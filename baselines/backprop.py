@@ -12,6 +12,7 @@ import torch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from dust import GPTConfig, evaluate, file_hash, load_sequences, make_model
 from baselines.optim import build_optimizer
+from baselines.decouple import DelayedGradients, delay_map
 
 
 DEFAULT_CONFIGS = {
@@ -29,7 +30,9 @@ def make_optimizer(model, lr, momentum):
     return torch.optim.SGD(groups, lr=lr, momentum=momentum)
 
 
-def train_step(model, optimizers, x, y):
+def train_step(model, optimizers, x, y, delayed=None):
+    if delayed is not None:
+        return _delayed_train_step(model, optimizers, x, y, delayed)
     for optimizer in optimizers:
         optimizer.zero_grad(set_to_none=True)
     with torch.autocast(x.device.type, dtype=torch.bfloat16, enabled=x.is_cuda):
@@ -45,8 +48,35 @@ def train_step(model, optimizers, x, y):
     return loss.item()
 
 
+def _delayed_train_step(model, optimizers, x, y, delayed):
+    """train_step with gradients computed at delayed.evaluation_point() and applied late (baselines/decouple.py)."""
+    for optimizer in optimizers:
+        optimizer.zero_grad(set_to_none=True)
+    with delayed.evaluation_point():
+        with torch.autocast(x.device.type, dtype=torch.bfloat16, enabled=x.is_cuda):
+            loss = model(x, y)
+        if not torch.isfinite(loss):
+            raise FloatingPointError('Non-finite backpropagation loss')
+        loss.backward()
+    for name, parameter in model.named_parameters():
+        if parameter.grad is not None and not torch.isfinite(parameter.grad).all():
+            raise FloatingPointError(f'Non-finite backpropagation gradient for {name}')
+    delayed.exchange()
+    for optimizer in optimizers:
+        optimizer.step()
+    delayed.after_step()
+    return loss.item()
+
+
 def parse_args(argv=None):
     return _parse_args(argv)[1]
+
+
+def _nonnegative_int(text):
+    value = int(text)
+    if value < 0:
+        raise argparse.ArgumentTypeError('must be >= 0')
+    return value
 
 
 def _parse_args(argv=None):
@@ -60,6 +90,12 @@ def _parse_args(argv=None):
     parser.add_argument('--steps', type=int, help='Stop early; keep the full selected training subset.')
     parser.add_argument('--optimizer', choices=['sgd', 'adamw', 'muon'], default='sgd')
     parser.add_argument('--adam-lr', type=float, help='Muon only: AdamW lr for non-block parameters (default 0.008).')
+    parser.add_argument('--grad-delay', type=_nonnegative_int, default=0,
+                        help='Apply each gradient this many steps late (default 0).')
+    parser.add_argument('--delay-mode', choices=['uniform', 'depth'], default='uniform',
+                        help='uniform: every parameter gets --grad-delay; depth: pipeline-like, lower blocks staler.')
+    parser.add_argument('--weight-prediction', action='store_true',
+                        help='Compute gradients at w + delay * (last update) instead of w.')
     args = parser.parse_args(argv)
     defaults = DEFAULT_CONFIGS[args.tokens]
     if args.optimizer == 'sgd':
@@ -75,6 +111,8 @@ def _parse_args(argv=None):
         parser.error('--adam-lr applies to --optimizer muon only.')
     if args.optimizer == 'adamw' and args.momentum is not None:
         parser.error('--momentum does not apply to --optimizer adamw (betas are fixed at 0.9, 0.95).')
+    if args.weight_prediction and args.grad_delay == 0:
+        parser.error('--weight-prediction needs --grad-delay > 0 (with no delay there is nothing to predict).')
     return parser, args
 
 
@@ -124,6 +162,9 @@ def main():
         model.transformer.wte.float()
         model.value_embeds.float()
     optimizers = build_optimizer(model, args.optimizer, args.lr, args.momentum, args.adam_lr)
+    delayed = None
+    if args.grad_delay > 0 or args.weight_prediction:
+        delayed = DelayedGradients(model, delay_map(model, args.grad_delay, args.delay_mode), args.weight_prediction)
     if args.output.exists() and any(args.output.iterdir()):
         raise FileExistsError(f'Choose an empty output directory: {args.output}')
     args.output.mkdir(parents=True, exist_ok=True)
@@ -141,6 +182,7 @@ def main():
         torch_version=torch.__version__,
         data_sha256={name: file_hash(path) for name, path in paths.items()},
         optimizer=args.optimizer, adam_lr=args.adam_lr, fp32_embeddings=fp32_embeddings,
+        grad_delay=args.grad_delay, delay_mode=args.delay_mode, weight_prediction=args.weight_prediction,
     )
     (args.output / 'config.json').write_text(json.dumps(metadata, indent=2) + '\n')
 
@@ -160,7 +202,7 @@ def main():
 
     for step in range(1, steps + 1):
         batch = training[(step - 1) * 8:step * 8].to(device)
-        loss = train_step(model, optimizers, batch[:, :-1].contiguous(), batch[:, 1:].contiguous())
+        loss = train_step(model, optimizers, batch[:, :-1].contiguous(), batch[:, 1:].contiguous(), delayed)
         record = dict(step=step, train_loss=loss, elapsed_seconds=time.monotonic() - start)
         if step == 1 or step % interval == 0 or step == steps:
             value = evaluate(model, validation, device)
