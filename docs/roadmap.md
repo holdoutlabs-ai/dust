@@ -12,7 +12,7 @@ Interpreter: `D:/Micromamba/micromambaenv/envs/dust/python.exe`.
 | 1 | `dust.py` flag: Recipe fields, `analytic_value_errors`, step wiring, `draws==0` guard, `recipe()`, CLI + config.json, `estimate()` split for cosine; `model.py` sync comment | dust-dev | 0 | dust.py, model.py | done | pass, 1 round (reviewer: in-place scores, lead applied) |
 | 1t | Tests for WP1: autograd pin (stage 3.2), sampled path unchanged, flag/CLI plumbing | dust-test-writer | 0 | tests/test_analytic_autograd.py, tests/test_value_credit_flag.py | done | pass (mutation-checked: Γᵀ, flipped γ, scale, gate, mask, norm, rotary all caught) |
 | 2 | `diagnostics/regression.py` (stage 3.1) + pytest wrapper | dust-dev / dust-test-writer | 1 | diagnostics/regression.py, tests/test_regression.py | in-progress | |
-| 3 | `diagnostics/cosine.py` (per-parameter cosine vs autograd, layer-type table, CLI) | dust-dev | 1 | diagnostics/cosine.py, tests/test_cosine.py | in-progress | |
+| 3 | `diagnostics/cosine.py` (per-parameter cosine vs autograd, layer-type table, CLI) | dust-dev | 1 | diagnostics/cosine.py, tests/test_cosine.py | done | pass, 1 round (lead applied: CUDA warm-up before timing, arg choices/validation, std/peak notes) |
 
 Waves: {1, 1t} → review → {2, 3} → review.
 
@@ -39,3 +39,6 @@ Waves: {1, 1t} → review → {2, 3} → review.
   keep this in mind when reading the GPU cosine numbers in 3.3. `analytic_value_errors` at the paper config:
   0.49 s, peak +917 MiB above capture (384 MiB of it the returned errors); capture itself holds 3.75 GiB.
 - Sampled-mean margins at K=4096, γ=0.5 (WP1t, fixed seed): cos 0.988/0.990/0.991, ratio 1.016/1.008/1.028.
+- WP3 (2026-10-10): tiny CPU cosines over 2 seeds × 2 batches: v 0.08 (A) → 0.26 (B) → 0.27 (C), ve 0.05 → 0.22 → 0.23;
+  other types identical or within noise. Gate cos has per-seed sd ≈ 0.13 on tiny (12-seed check: A 0.091, B 0.064, SE 0.037),
+  so 3.3 needs many seeds before reading anything into gate/k differences between A and B.
