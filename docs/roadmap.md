@@ -11,7 +11,7 @@ Interpreter: `D:/Micromamba/micromambaenv/envs/dust/python.exe`.
 | 0 | Setup: env, CLAUDE.md, agents, tiny config, conftest, smoke test | dust-lead | – | CLAUDE.md, .claude/agents/*, diagnostics/{__init__,tiny}.py, tests/{conftest,test_smoke}.py | done | – |
 | 1 | `dust.py` flag: Recipe fields, `analytic_value_errors`, step wiring, `draws==0` guard, `recipe()`, CLI + config.json, `estimate()` split for cosine; `model.py` sync comment | dust-dev | 0 | dust.py, model.py | done | pass, 1 round (reviewer: in-place scores, lead applied) |
 | 1t | Tests for WP1: autograd pin (stage 3.2), sampled path unchanged, flag/CLI plumbing | dust-test-writer | 0 | tests/test_analytic_autograd.py, tests/test_value_credit_flag.py | done | pass (mutation-checked: Γᵀ, flipped γ, scale, gate, mask, norm, rotary all caught) |
-| 2 | `diagnostics/regression.py` (stage 3.1) + pytest wrapper | dust-dev / dust-test-writer | 1 | diagnostics/regression.py, tests/test_regression.py | in-progress | |
+| 2 | `diagnostics/regression.py` (stage 3.1) + pytest wrapper | dust-dev / dust-test-writer | 1 | diagnostics/regression.py, tests/test_regression.py | done | pass, 1 round; 3.1 pass rule amended (Noah, 2026-10-10); lead applied: evaluate() + gate test, K%nrep guard, independent noise per (seed,K,γ,kind) |
 | 3 | `diagnostics/cosine.py` (per-parameter cosine vs autograd, layer-type table, CLI) | dust-dev | 1 | diagnostics/cosine.py, tests/test_cosine.py | done | pass, 1 round (lead applied: CUDA warm-up before timing, arg choices/validation, std/peak notes) |
 
 Waves: {1, 1t} → review → {2, 3} → review.

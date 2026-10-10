@@ -126,6 +126,21 @@ For fixed model, batch, and `targets`:
 
 If this fails, nothing downstream is meaningful. Fix before continuing.
 
+**Amendment (2026-10-10, approved by Noah).** The first full run met every bias-sensitive check but missed the
+absolute per-seed thresholds above at γ ∈ {0.98, 0.9} (min cos ≈ 0.965, ratio ≈ 1.035 at K=4096): the sampled
+estimator's variance grows with the number of lags the decay sums, so at γ near 1 K=4096 is not enough draws for
+cos > 0.99 regardless of correctness. Since `E‖A_K‖² = ‖B‖² + E‖A_K − B‖²`, noise alone predicts
+`ratio² − rel = 1` and `cos = 1/√(1 + rel)` (rel = `‖A_K − B‖²/‖B‖²`). (Clarified the same day after review:
+since `rel = ratio² − 2·cos·ratio + 1` identically, the first check is `|p − 1| < 0.025` for the projection
+coefficient `p = cos·ratio = ⟨A_K, B⟩/‖B‖²`, i.e. the component along B is unbiased; it trips on a ≥3% scale error.
+The second is a weaker function of the same numbers. A bias orthogonal to B leaves p = 1 and is caught by the
+slope/rel-decreasing checks, as an error floor. 3.1 cannot resolve the mask edge (one key at lag = window), which
+3.2 pins.)
+The 3.1 pass rule is therefore, for every (config, γ, site), per seed at the largest K:
+`|ratio² − rel − 1| < 0.05` and `|cos − 1/√(1+rel)| < 0.003`; the slope of log rel vs log K in (−1.25, −0.75);
+rel decreasing in K; and the wrong-γ control (γ=0.5 data vs B at γ=1) has rel > 2× rel vs B.
+Raw cos and ratio are still reported, and the original thresholds are recorded as informational checks.
+
 ### 3.2 Autograd sanity for the analytic path (CPU, tiny)
 
 Independent of DUST: set `targets[i]` to the **true** `∂L/∂o_i` from autograd (hook on `attn.c_proj` input). Then variant **C** must reproduce autograd's `∂L/∂v` and `∂L/∂ve` to float precision (`cos > 0.9999`, norms equal). This pins down the `A` construction, scale, mask, and the gate multiplier with no sampling noise anywhere.
