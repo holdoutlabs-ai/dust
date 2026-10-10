@@ -9,7 +9,20 @@ transformer with forward passes and SGD only (no backprop). `model.py` is the mo
 estimator and training loop, `baselines/backprop.py` the backprop baseline. Paper:
 <https://qlabs.sh/research/dust>.
 
-## Current work: Experiment 1, analytic local value credit
+## Current work: Experiment 2, late and predicted gradients (branch `exp/decoupling`)
+
+Plan: `docs/PLAN-decoupling.md` (source of truth; lead edits only, with date and reason). Roadmap:
+`docs/roadmap-exp2.md`. Briefs: `docs/briefs/E2-WP<n>.md`. Results: `results/exp2-decoupling/`.
+Stages 2.0 strong baseline (AdamW/Muon) → 2.1 staleness ladder → 2.2 synthetic gradients → 2.3 data-conditioned
+gradient predictor, hard-gated in order. Same build team, gates and test rules as below.
+
+Experiment-2 code rules:
+- `baselines/backprop.py` gets minimal, flag-gated changes. With default flags (`--optimizer sgd`, no delay, no predictor)
+  behaviour must be identical to `main`: same results bitwise for the same seed. `dust.py` and `model.py` are not touched.
+- New mechanisms (delays, predictors) live in new modules (e.g. `baselines/decouple.py`), not inline sprawl.
+- Expected values in tests come from math, an SVD/autograd reference, or the unmodified baseline, never the code under test.
+
+## Previous work: Experiment 1, analytic local value credit (done; `results/exp1-value-credit/REPORT.md`)
 
 Plan: `docs/PLAN-value-credit.md` (the source of truth; only `dust-lead` edits it, with the date and reason).
 Roadmap and status: `docs/roadmap.md`. Briefs: `docs/briefs/WP<n>.md`.

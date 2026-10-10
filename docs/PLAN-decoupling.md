@@ -1,6 +1,6 @@
-# Experiment 2: how much does a late or predicted gradient cost? (DRAFT, awaiting Noah's approval)
+# Experiment 2: how much does a late or predicted gradient cost?
 
-Status: draft, 2026-10-10. Branch `exp/decoupling` (from `exp/value-credit`, to reuse `diagnostics/cosine.py` and the
+Status: approved by Noah as written, 2026-10-10 (10M data download approved the same day). Branch `exp/decoupling` (from `exp/value-credit`, to reuse `diagnostics/cosine.py` and the
 gated workflow). Never commit to `main`. Only the lead edits this plan, with the date and reason.
 
 ## 0. Goal and hypotheses
