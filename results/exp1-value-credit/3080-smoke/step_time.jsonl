@@ -1,0 +1,4 @@
+{"variant": "A", "warmup_s": 34.2, "step_s": [52.17, 86.44], "peak_gib": 6.5, "loss": 7.79400634765625}
+{"variant": "B", "warmup_s": 35.87, "step_s": [87.54, 59.15], "peak_gib": 6.49, "loss": 7.795810699462891}
+{"variant": "A", "warmup_s": 41.64, "step_s": [61.69, 54.0], "peak_gib": 6.5, "loss": 7.79400634765625}
+{"variant": "B", "warmup_s": 41.12, "step_s": [74.61, 42.52], "peak_gib": 6.49, "loss": 7.795810699462891}

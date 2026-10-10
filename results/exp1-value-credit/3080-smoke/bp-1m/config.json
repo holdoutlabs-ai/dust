@@ -1,0 +1,42 @@
+{
+  "method": "backprop",
+  "tokens": "1M",
+  "seed": 42,
+  "steps": 61,
+  "lr": 0.175,
+  "momentum": 0.98,
+  "weight_decay": 0.0,
+  "training_tokens": 999424,
+  "validation_sequences": 544,
+  "test_sequences": 544,
+  "model": {
+    "sequence_len": 2048,
+    "vocab_size": 4096,
+    "n_layer": 8,
+    "n_head": 8,
+    "n_kv_head": 8,
+    "n_embd": 512,
+    "window_pattern": "SSSL"
+  },
+  "parameter_groups": [
+    {
+      "lr": 0.175,
+      "momentum": 0.98,
+      "parameters": 35652624
+    },
+    {
+      "lr": 1000.0,
+      "momentum": 0.98,
+      "parameters": 2097152
+    }
+  ],
+  "source_sha256": "e1fc0098391bac6f4d641d60241d279363e71a66135de7f2fc8b68fcfe7ef731",
+  "model_source_sha256": "bfadee9f729d4c7aa0e66734bbed98354af4bfe909b1200b7490fdeb89f9af61",
+  "model_sha256": "6361f5c9a1c92117ec831ff38103dde4687ca1f0059ea0d85c916b898568fe02",
+  "torch_version": "2.10.0+cu128",
+  "data_sha256": {
+    "train": "f65a53b4b9d3580bc2c9d439c9844c3af60995193e97081c0e97ee864b356a6d",
+    "val": "c71d73e15ab4744f725db3d612aeeef6fdba10948d51f3e1f8522e12c836b6ed",
+    "test": "4b410d5704298e25072ca1b6ccd70561046aa559902beb44f19ff84984014654"
+  }
+}

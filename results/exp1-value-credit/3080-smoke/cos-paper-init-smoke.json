@@ -1,0 +1,1892 @@
+{
+ "args": {
+  "config": "paper",
+  "checkpoint": null,
+  "variants": [
+   "A",
+   "B",
+   "C"
+  ],
+  "population": 256,
+  "tokens": "1M",
+  "seeds": [
+   0
+  ],
+  "batches": 1,
+  "batch_size": 8,
+  "data": null,
+  "nrep": null,
+  "device": "cuda",
+  "out": "runs\\smoke\\cos-paper-init-smoke.json",
+  "notes": [
+   "std is the sample std (ddof=1) over (seed, batch) records; 0 for one record",
+   "peak_gib is process-wide peak during estimate() (includes model, batches, autograd grads)",
+   "one discarded warm-up estimate precedes the timed ones",
+   "random token batches: torch.Generator().manual_seed(1000 + j)"
+  ]
+ },
+ "command": "E:\\dust\\diagnostics\\cosine.py --config paper --variants A,B,C --population 256 --seeds 0 --batches 1 --device cuda --out runs/smoke/cos-paper-init-smoke.json",
+ "torch": "2.10.0+cu128",
+ "device": "NVIDIA GeForce RTX 3080 Laptop GPU",
+ "recipe": {
+  "writers": [
+   38,
+   32,
+   16,
+   10,
+   6,
+   4,
+   2,
+   2
+  ],
+  "hidden": [
+   38,
+   32,
+   16,
+   10,
+   6,
+   4,
+   2,
+   2
+  ],
+  "hubs": [
+   6,
+   6,
+   4,
+   2,
+   2,
+   2,
+   2,
+   2
+  ],
+  "embedding": 10,
+  "head": 1024,
+  "local": {
+   "q": 2,
+   "v": 20,
+   "gate": 6,
+   "k": 12,
+   "ve": 8
+  },
+  "nrep": 2,
+  "lr": 0.25,
+  "momentum": 0.95,
+  "gamma": 0.98,
+  "value_credit": "sampled",
+  "value_gamma": null
+ },
+ "elapsed_seconds": 461.45801299996674,
+ "variants": {
+  "A": {
+   "settings": {
+    "writers": [
+     38,
+     32,
+     16,
+     10,
+     6,
+     4,
+     2,
+     2
+    ],
+    "hidden": [
+     38,
+     32,
+     16,
+     10,
+     6,
+     4,
+     2,
+     2
+    ],
+    "hubs": [
+     6,
+     6,
+     4,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "embedding": 10,
+    "head": 1024,
+    "local": {
+     "q": 2,
+     "v": 20,
+     "gate": 6,
+     "k": 12,
+     "ve": 8
+    },
+    "nrep": 2,
+    "lr": 0.25,
+    "momentum": 0.95,
+    "gamma": 0.98,
+    "value_credit": "sampled",
+    "value_gamma": null
+   },
+   "per_param": {
+    "resid_lambdas": {
+     "cos_mean": 0.4187290841083632,
+     "cos_std": 0.0,
+     "ratio_mean": 1.2018308223371712,
+     "ratio_std": 0.0,
+     "type": "lambdas"
+    },
+    "x0_lambdas": {
+     "cos_mean": 0.7939376070659384,
+     "cos_std": 0.0,
+     "ratio_mean": 1.3269956595226853,
+     "ratio_std": 0.0,
+     "type": "lambdas"
+    },
+    "transformer.wte.weight": {
+     "cos_mean": 0.09148392559888367,
+     "cos_std": 0.0,
+     "ratio_mean": 4.873480312942168,
+     "ratio_std": 0.0,
+     "type": "wte"
+    },
+    "transformer.h.0.attn.c_q.weight": {
+     "cos_mean": 0.007580847965798735,
+     "cos_std": 0.0,
+     "ratio_mean": 34.4021595340391,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.0.attn.c_k.weight": {
+     "cos_mean": 0.002664488630296544,
+     "cos_std": 0.0,
+     "ratio_mean": 60.64022098893474,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.0.attn.c_v.weight": {
+     "cos_mean": 0.004936250298476888,
+     "cos_std": 0.0,
+     "ratio_mean": 35.82017284716684,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.0.attn.c_proj.weight": {
+     "cos_mean": 0.12380799292503496,
+     "cos_std": 0.0,
+     "ratio_mean": 2.184641187626469,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.0.mlp.c_fc.weight": {
+     "cos_mean": 0.09192471430427615,
+     "cos_std": 0.0,
+     "ratio_mean": 5.053715610581518,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.0.mlp.c_proj.weight": {
+     "cos_mean": 0.05598681339118867,
+     "cos_std": 0.0,
+     "ratio_mean": 5.3730207286285925,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.1.attn.c_q.weight": {
+     "cos_mean": 0.015810796250154597,
+     "cos_std": 0.0,
+     "ratio_mean": 37.5609537612479,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.1.attn.c_k.weight": {
+     "cos_mean": 0.0024324839302442905,
+     "cos_std": 0.0,
+     "ratio_mean": 68.14226791210697,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.1.attn.c_v.weight": {
+     "cos_mean": -0.02285194796807054,
+     "cos_std": 0.0,
+     "ratio_mean": 9.937220738952899,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.1.attn.c_proj.weight": {
+     "cos_mean": 0.10359827499387186,
+     "cos_std": 0.0,
+     "ratio_mean": 2.7495882739458506,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.1.attn.ve_gate.weight": {
+     "cos_mean": 0.05542805796428665,
+     "cos_std": 0.0,
+     "ratio_mean": 10.39006845922162,
+     "ratio_std": 0.0,
+     "type": "gate"
+    },
+    "transformer.h.1.mlp.c_fc.weight": {
+     "cos_mean": 0.08088248801807023,
+     "cos_std": 0.0,
+     "ratio_mean": 5.486520678330808,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.1.mlp.c_proj.weight": {
+     "cos_mean": 0.0820480687542075,
+     "cos_std": 0.0,
+     "ratio_mean": 4.266715193786596,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.2.attn.c_q.weight": {
+     "cos_mean": 0.026562733726974912,
+     "cos_std": 0.0,
+     "ratio_mean": 47.33929293016462,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.2.attn.c_k.weight": {
+     "cos_mean": -0.003098954404380675,
+     "cos_std": 0.0,
+     "ratio_mean": 85.95497548415278,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.2.attn.c_v.weight": {
+     "cos_mean": -0.02494612944512086,
+     "cos_std": 0.0,
+     "ratio_mean": 9.571080262327037,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.2.attn.c_proj.weight": {
+     "cos_mean": 0.16414549533568457,
+     "cos_std": 0.0,
+     "ratio_mean": 4.102309521148754,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.2.mlp.c_fc.weight": {
+     "cos_mean": 0.06043835888771601,
+     "cos_std": 0.0,
+     "ratio_mean": 7.795063437213733,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.2.mlp.c_proj.weight": {
+     "cos_mean": 0.07534709080373812,
+     "cos_std": 0.0,
+     "ratio_mean": 5.811407346857488,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.3.attn.c_q.weight": {
+     "cos_mean": -0.00995629690441396,
+     "cos_std": 0.0,
+     "ratio_mean": 67.59286393215491,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.3.attn.c_k.weight": {
+     "cos_mean": 0.00013975265691441318,
+     "cos_std": 0.0,
+     "ratio_mean": 126.52129563363266,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.3.attn.c_v.weight": {
+     "cos_mean": 0.0394139033829076,
+     "cos_std": 0.0,
+     "ratio_mean": 12.797374439863436,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.3.attn.c_proj.weight": {
+     "cos_mean": 0.05746027269921741,
+     "cos_std": 0.0,
+     "ratio_mean": 5.642260280069058,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.3.attn.ve_gate.weight": {
+     "cos_mean": -0.018586909535504372,
+     "cos_std": 0.0,
+     "ratio_mean": 20.53576383044581,
+     "ratio_std": 0.0,
+     "type": "gate"
+    },
+    "transformer.h.3.mlp.c_fc.weight": {
+     "cos_mean": 0.04862538959150994,
+     "cos_std": 0.0,
+     "ratio_mean": 9.898599502738085,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.3.mlp.c_proj.weight": {
+     "cos_mean": 0.05815779503406037,
+     "cos_std": 0.0,
+     "ratio_mean": 7.139938578664618,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.4.attn.c_q.weight": {
+     "cos_mean": 0.012601663648211654,
+     "cos_std": 0.0,
+     "ratio_mean": 69.45118063146391,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.4.attn.c_k.weight": {
+     "cos_mean": -0.0060119583329697555,
+     "cos_std": 0.0,
+     "ratio_mean": 126.29257544156607,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.4.attn.c_v.weight": {
+     "cos_mean": 0.019540788937910232,
+     "cos_std": 0.0,
+     "ratio_mean": 11.95115711443655,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.4.attn.c_proj.weight": {
+     "cos_mean": 0.021037778398170604,
+     "cos_std": 0.0,
+     "ratio_mean": 7.859626427185657,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.4.mlp.c_fc.weight": {
+     "cos_mean": 0.03376399640414986,
+     "cos_std": 0.0,
+     "ratio_mean": 12.638889850410454,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.4.mlp.c_proj.weight": {
+     "cos_mean": 0.07507518968003433,
+     "cos_std": 0.0,
+     "ratio_mean": 9.415227232408617,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.5.attn.c_q.weight": {
+     "cos_mean": 0.020563146648429013,
+     "cos_std": 0.0,
+     "ratio_mean": 73.35466850191871,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.5.attn.c_k.weight": {
+     "cos_mean": 0.01652150747411665,
+     "cos_std": 0.0,
+     "ratio_mean": 130.45622549738056,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.5.attn.c_v.weight": {
+     "cos_mean": 0.004562966990529968,
+     "cos_std": 0.0,
+     "ratio_mean": 12.371080935915721,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.5.attn.c_proj.weight": {
+     "cos_mean": 0.058733878793586956,
+     "cos_std": 0.0,
+     "ratio_mean": 10.095442293726814,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.5.attn.ve_gate.weight": {
+     "cos_mean": 0.22840918909087796,
+     "cos_std": 0.0,
+     "ratio_mean": 19.82586194855432,
+     "ratio_std": 0.0,
+     "type": "gate"
+    },
+    "transformer.h.5.mlp.c_fc.weight": {
+     "cos_mean": 0.050497217018674816,
+     "cos_std": 0.0,
+     "ratio_mean": 16.030919763934424,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.5.mlp.c_proj.weight": {
+     "cos_mean": 0.02455960926811767,
+     "cos_std": 0.0,
+     "ratio_mean": 11.7997507383681,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.6.attn.c_q.weight": {
+     "cos_mean": 0.028471413265087567,
+     "cos_std": 0.0,
+     "ratio_mean": 70.32211436062731,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.6.attn.c_k.weight": {
+     "cos_mean": 0.009958668218360488,
+     "cos_std": 0.0,
+     "ratio_mean": 129.30803310353127,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.6.attn.c_v.weight": {
+     "cos_mean": 0.059161741033964016,
+     "cos_std": 0.0,
+     "ratio_mean": 12.18756418434783,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.6.attn.c_proj.weight": {
+     "cos_mean": 0.0015330520529248843,
+     "cos_std": 0.0,
+     "ratio_mean": 14.103379290527235,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.6.mlp.c_fc.weight": {
+     "cos_mean": 0.0055987528993299805,
+     "cos_std": 0.0,
+     "ratio_mean": 22.15720331552093,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.6.mlp.c_proj.weight": {
+     "cos_mean": 0.00813203969104043,
+     "cos_std": 0.0,
+     "ratio_mean": 16.394507023606806,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.7.attn.c_q.weight": {
+     "cos_mean": 0.02916254714152123,
+     "cos_std": 0.0,
+     "ratio_mean": 70.0652717502558,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.7.attn.c_k.weight": {
+     "cos_mean": -0.006031430940050355,
+     "cos_std": 0.0,
+     "ratio_mean": 131.12923100653109,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.7.attn.c_v.weight": {
+     "cos_mean": 0.009897310791350087,
+     "cos_std": 0.0,
+     "ratio_mean": 10.987305503520147,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.7.attn.c_proj.weight": {
+     "cos_mean": 0.039520097075066166,
+     "cos_std": 0.0,
+     "ratio_mean": 15.325281577788957,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.7.attn.ve_gate.weight": {
+     "cos_mean": 0.13936185818928706,
+     "cos_std": 0.0,
+     "ratio_mean": 16.448519301058244,
+     "ratio_std": 0.0,
+     "type": "gate"
+    },
+    "transformer.h.7.mlp.c_fc.weight": {
+     "cos_mean": 0.021218997627789362,
+     "cos_std": 0.0,
+     "ratio_mean": 22.99901907377862,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.7.mlp.c_proj.weight": {
+     "cos_mean": 0.0675125196819436,
+     "cos_std": 0.0,
+     "ratio_mean": 16.459965677166018,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "lm_head.weight": {
+     "cos_mean": 0.42163963189874293,
+     "cos_std": 0.0,
+     "ratio_mean": 2.0701328051685284,
+     "ratio_std": 0.0,
+     "type": "lm_head"
+    },
+    "value_embeds.1.weight": {
+     "cos_mean": 0.0023001297206204324,
+     "cos_std": 0.0,
+     "ratio_mean": 62.29338944822556,
+     "ratio_std": 0.0,
+     "type": "ve"
+    },
+    "value_embeds.3.weight": {
+     "cos_mean": 0.003308051082593643,
+     "cos_std": 0.0,
+     "ratio_mean": 115.06575834829702,
+     "ratio_std": 0.0,
+     "type": "ve"
+    },
+    "value_embeds.5.weight": {
+     "cos_mean": 0.0008290689262680735,
+     "cos_std": 0.0,
+     "ratio_mean": 129.0082638324228,
+     "ratio_std": 0.0,
+     "type": "ve"
+    },
+    "value_embeds.7.weight": {
+     "cos_mean": -0.0002643925033038633,
+     "cos_std": 0.0,
+     "ratio_mean": 132.24618166020502,
+     "ratio_std": 0.0,
+     "type": "ve"
+    }
+   },
+   "per_type": {
+    "wte": {
+     "cos_mean": 0.09148392559888367,
+     "cos_std": 0.0,
+     "ratio_mean": 4.873480312942168,
+     "ratio_std": 0.0
+    },
+    "lm_head": {
+     "cos_mean": 0.42163963189874293,
+     "cos_std": 0.0,
+     "ratio_mean": 2.0701328051685284,
+     "ratio_std": 0.0
+    },
+    "lambdas": {
+     "cos_mean": 0.6063333455871508,
+     "cos_std": 0.0,
+     "ratio_mean": 1.2644132409299282,
+     "ratio_std": 0.0
+    },
+    "ve": {
+     "cos_mean": 0.0015432143065445714,
+     "cos_std": 0.0,
+     "ratio_mean": 109.6533983222876,
+     "ratio_std": 0.0
+    },
+    "q": {
+     "cos_mean": 0.01634960646772047,
+     "cos_std": 0.0,
+     "ratio_mean": 58.761063175234035,
+     "ratio_std": 0.0
+    },
+    "k": {
+     "cos_mean": 0.0020718196540664502,
+     "cos_std": 0.0,
+     "ratio_mean": 107.30560313347952,
+     "ratio_std": 0.0
+    },
+    "v": {
+     "cos_mean": 0.011214360502743423,
+     "cos_std": 0.0,
+     "ratio_mean": 14.452869503316307,
+     "ratio_std": 0.0
+    },
+    "gate": {
+     "cos_mean": 0.10115304892723682,
+     "cos_std": 0.0,
+     "ratio_mean": 16.800053384819996,
+     "ratio_std": 0.0
+    },
+    "attn_out": {
+     "cos_mean": 0.07122960528419468,
+     "cos_std": 0.0,
+     "ratio_mean": 7.757816106502349,
+     "ratio_std": 0.0
+    },
+    "mlp_in": {
+     "cos_mean": 0.049118739343939545,
+     "cos_std": 0.0,
+     "ratio_mean": 12.757491404063572,
+     "ratio_std": 0.0
+    },
+    "mlp_out": {
+     "cos_mean": 0.055852390788041335,
+     "cos_std": 0.0,
+     "ratio_mean": 9.582566564935854,
+     "ratio_std": 0.0
+    }
+   },
+   "full": {
+    "mean": 0.40240865650723123,
+    "std": 0.0
+   },
+   "value_subset": {
+    "mean": 0.005364269611956539,
+    "std": 0.0
+   },
+   "seconds_mean": 326.89515520003624,
+   "peak_gib_max": 6.403040409088135
+  },
+  "B": {
+   "settings": {
+    "writers": [
+     38,
+     32,
+     16,
+     10,
+     6,
+     4,
+     2,
+     2
+    ],
+    "hidden": [
+     38,
+     32,
+     16,
+     10,
+     6,
+     4,
+     2,
+     2
+    ],
+    "hubs": [
+     6,
+     6,
+     4,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "embedding": 10,
+    "head": 1024,
+    "local": {
+     "q": 2,
+     "v": 0,
+     "gate": 6,
+     "k": 12,
+     "ve": 0
+    },
+    "nrep": 2,
+    "lr": 0.25,
+    "momentum": 0.95,
+    "gamma": 0.98,
+    "value_credit": "analytic",
+    "value_gamma": null
+   },
+   "per_param": {
+    "resid_lambdas": {
+     "cos_mean": 0.41008110787059887,
+     "cos_std": 0.0,
+     "ratio_mean": 0.8895383706783055,
+     "ratio_std": 0.0,
+     "type": "lambdas"
+    },
+    "x0_lambdas": {
+     "cos_mean": 0.592644421454234,
+     "cos_std": 0.0,
+     "ratio_mean": 1.9863193022739822,
+     "ratio_std": 0.0,
+     "type": "lambdas"
+    },
+    "transformer.wte.weight": {
+     "cos_mean": 0.09148392559869356,
+     "cos_std": 0.0,
+     "ratio_mean": 4.873480312948132,
+     "ratio_std": 0.0,
+     "type": "wte"
+    },
+    "transformer.h.0.attn.c_q.weight": {
+     "cos_mean": 0.007580847965798735,
+     "cos_std": 0.0,
+     "ratio_mean": 34.4021595340391,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.0.attn.c_k.weight": {
+     "cos_mean": 0.002427622119270286,
+     "cos_std": 0.0,
+     "ratio_mean": 60.76572779775607,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.0.attn.c_v.weight": {
+     "cos_mean": 0.04340859327387641,
+     "cos_std": 0.0,
+     "ratio_mean": 2.572505087611699,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.0.attn.c_proj.weight": {
+     "cos_mean": 0.12380799292503496,
+     "cos_std": 0.0,
+     "ratio_mean": 2.184641187626469,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.0.mlp.c_fc.weight": {
+     "cos_mean": 0.09192471430427615,
+     "cos_std": 0.0,
+     "ratio_mean": 5.053715610581518,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.0.mlp.c_proj.weight": {
+     "cos_mean": 0.05598681339118867,
+     "cos_std": 0.0,
+     "ratio_mean": 5.3730207286285925,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.1.attn.c_q.weight": {
+     "cos_mean": 0.015810796250154597,
+     "cos_std": 0.0,
+     "ratio_mean": 37.5609537612479,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.1.attn.c_k.weight": {
+     "cos_mean": 0.002179815674622234,
+     "cos_std": 0.0,
+     "ratio_mean": 68.18609738736265,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.1.attn.c_v.weight": {
+     "cos_mean": -0.0013024094200793546,
+     "cos_std": 0.0,
+     "ratio_mean": 1.2230848011351632,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.1.attn.c_proj.weight": {
+     "cos_mean": 0.10359827499387186,
+     "cos_std": 0.0,
+     "ratio_mean": 2.7495882739458506,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.1.attn.ve_gate.weight": {
+     "cos_mean": -0.1441625749585955,
+     "cos_std": 0.0,
+     "ratio_mean": 9.656401697838382,
+     "ratio_std": 0.0,
+     "type": "gate"
+    },
+    "transformer.h.1.mlp.c_fc.weight": {
+     "cos_mean": 0.08088248801807023,
+     "cos_std": 0.0,
+     "ratio_mean": 5.486520678330808,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.1.mlp.c_proj.weight": {
+     "cos_mean": 0.0820480687542075,
+     "cos_std": 0.0,
+     "ratio_mean": 4.266715193786596,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.2.attn.c_q.weight": {
+     "cos_mean": 0.026562733726974912,
+     "cos_std": 0.0,
+     "ratio_mean": 47.33929293016462,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.2.attn.c_k.weight": {
+     "cos_mean": -0.009632656095784323,
+     "cos_std": 0.0,
+     "ratio_mean": 86.52206276206861,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.2.attn.c_v.weight": {
+     "cos_mean": 0.0633403944078157,
+     "cos_std": 0.0,
+     "ratio_mean": 1.4426642458929748,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.2.attn.c_proj.weight": {
+     "cos_mean": 0.16414549533568457,
+     "cos_std": 0.0,
+     "ratio_mean": 4.102309521148754,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.2.mlp.c_fc.weight": {
+     "cos_mean": 0.06043835888771601,
+     "cos_std": 0.0,
+     "ratio_mean": 7.795063437213733,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.2.mlp.c_proj.weight": {
+     "cos_mean": 0.07534709080373812,
+     "cos_std": 0.0,
+     "ratio_mean": 5.811407346857488,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.3.attn.c_q.weight": {
+     "cos_mean": -0.00995629690441396,
+     "cos_std": 0.0,
+     "ratio_mean": 67.59286393215491,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.3.attn.c_k.weight": {
+     "cos_mean": 0.011288877432777998,
+     "cos_std": 0.0,
+     "ratio_mean": 125.63309769623594,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.3.attn.c_v.weight": {
+     "cos_mean": 0.03547961019226553,
+     "cos_std": 0.0,
+     "ratio_mean": 2.1016294444319708,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.3.attn.c_proj.weight": {
+     "cos_mean": 0.05746027269921741,
+     "cos_std": 0.0,
+     "ratio_mean": 5.642260280069058,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.3.attn.ve_gate.weight": {
+     "cos_mean": -0.016703360269596405,
+     "cos_std": 0.0,
+     "ratio_mean": 19.79494148187642,
+     "ratio_std": 0.0,
+     "type": "gate"
+    },
+    "transformer.h.3.mlp.c_fc.weight": {
+     "cos_mean": 0.04862538959150994,
+     "cos_std": 0.0,
+     "ratio_mean": 9.898599502738085,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.3.mlp.c_proj.weight": {
+     "cos_mean": 0.05815779503406037,
+     "cos_std": 0.0,
+     "ratio_mean": 7.139938578664618,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.4.attn.c_q.weight": {
+     "cos_mean": 0.012601663648211654,
+     "cos_std": 0.0,
+     "ratio_mean": 69.45118063146391,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.4.attn.c_k.weight": {
+     "cos_mean": -0.005887588696590352,
+     "cos_std": 0.0,
+     "ratio_mean": 126.07883482626313,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.4.attn.c_v.weight": {
+     "cos_mean": 0.07776358615417146,
+     "cos_std": 0.0,
+     "ratio_mean": 2.0063324307970967,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.4.attn.c_proj.weight": {
+     "cos_mean": 0.021037778398170604,
+     "cos_std": 0.0,
+     "ratio_mean": 7.859626427185657,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.4.mlp.c_fc.weight": {
+     "cos_mean": 0.03376399640414986,
+     "cos_std": 0.0,
+     "ratio_mean": 12.638889850410454,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.4.mlp.c_proj.weight": {
+     "cos_mean": 0.07507518968003433,
+     "cos_std": 0.0,
+     "ratio_mean": 9.415227232408617,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.5.attn.c_q.weight": {
+     "cos_mean": 0.020563146648429013,
+     "cos_std": 0.0,
+     "ratio_mean": 73.35466850191871,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.5.attn.c_k.weight": {
+     "cos_mean": -0.003728304184103078,
+     "cos_std": 0.0,
+     "ratio_mean": 132.18102306858498,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.5.attn.c_v.weight": {
+     "cos_mean": 0.03661746428920014,
+     "cos_std": 0.0,
+     "ratio_mean": 2.206497239862786,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.5.attn.c_proj.weight": {
+     "cos_mean": 0.058733878793586956,
+     "cos_std": 0.0,
+     "ratio_mean": 10.095442293726814,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.5.attn.ve_gate.weight": {
+     "cos_mean": -0.02529858062264764,
+     "cos_std": 0.0,
+     "ratio_mean": 17.16923160064592,
+     "ratio_std": 0.0,
+     "type": "gate"
+    },
+    "transformer.h.5.mlp.c_fc.weight": {
+     "cos_mean": 0.050497217018674816,
+     "cos_std": 0.0,
+     "ratio_mean": 16.030919763934424,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.5.mlp.c_proj.weight": {
+     "cos_mean": 0.02455960926811767,
+     "cos_std": 0.0,
+     "ratio_mean": 11.7997507383681,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.6.attn.c_q.weight": {
+     "cos_mean": 0.028471413265087567,
+     "cos_std": 0.0,
+     "ratio_mean": 70.32211436062731,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.6.attn.c_k.weight": {
+     "cos_mean": -0.012292179807663551,
+     "cos_std": 0.0,
+     "ratio_mean": 132.04843182663734,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.6.attn.c_v.weight": {
+     "cos_mean": 0.004261064865855186,
+     "cos_std": 0.0,
+     "ratio_mean": 2.180381085348099,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.6.attn.c_proj.weight": {
+     "cos_mean": 0.0015330520529248843,
+     "cos_std": 0.0,
+     "ratio_mean": 14.103379290527235,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.6.mlp.c_fc.weight": {
+     "cos_mean": 0.0055987528993299805,
+     "cos_std": 0.0,
+     "ratio_mean": 22.15720331552093,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.6.mlp.c_proj.weight": {
+     "cos_mean": 0.00813203969104043,
+     "cos_std": 0.0,
+     "ratio_mean": 16.394507023606806,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.7.attn.c_q.weight": {
+     "cos_mean": 0.02916254714152123,
+     "cos_std": 0.0,
+     "ratio_mean": 70.0652717502558,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.7.attn.c_k.weight": {
+     "cos_mean": 0.016089878687683707,
+     "cos_std": 0.0,
+     "ratio_mean": 129.99422656532704,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.7.attn.c_v.weight": {
+     "cos_mean": -0.009240668497143497,
+     "cos_std": 0.0,
+     "ratio_mean": 2.0278776580634617,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.7.attn.c_proj.weight": {
+     "cos_mean": 0.039520097075066166,
+     "cos_std": 0.0,
+     "ratio_mean": 15.325281577788957,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.7.attn.ve_gate.weight": {
+     "cos_mean": 0.22014333889044846,
+     "cos_std": 0.0,
+     "ratio_mean": 19.571721219691998,
+     "ratio_std": 0.0,
+     "type": "gate"
+    },
+    "transformer.h.7.mlp.c_fc.weight": {
+     "cos_mean": 0.021218997627789362,
+     "cos_std": 0.0,
+     "ratio_mean": 22.99901907377862,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.7.mlp.c_proj.weight": {
+     "cos_mean": 0.0675125196819436,
+     "cos_std": 0.0,
+     "ratio_mean": 16.459965677166018,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "lm_head.weight": {
+     "cos_mean": 0.42163963189874293,
+     "cos_std": 0.0,
+     "ratio_mean": 2.0701328051685284,
+     "ratio_std": 0.0,
+     "type": "lm_head"
+    },
+    "value_embeds.1.weight": {
+     "cos_mean": 0.041159141471238274,
+     "cos_std": 0.0,
+     "ratio_mean": 3.2050815254657583,
+     "ratio_std": 0.0,
+     "type": "ve"
+    },
+    "value_embeds.3.weight": {
+     "cos_mean": 0.03326073448042374,
+     "cos_std": 0.0,
+     "ratio_mean": 5.547714333574887,
+     "ratio_std": 0.0,
+     "type": "ve"
+    },
+    "value_embeds.5.weight": {
+     "cos_mean": 0.026964177745605552,
+     "cos_std": 0.0,
+     "ratio_mean": 6.120850725754171,
+     "ratio_std": 0.0,
+     "type": "ve"
+    },
+    "value_embeds.7.weight": {
+     "cos_mean": 0.037051422819036374,
+     "cos_std": 0.0,
+     "ratio_mean": 6.7406479591902935,
+     "ratio_std": 0.0,
+     "type": "ve"
+    }
+   },
+   "per_type": {
+    "wte": {
+     "cos_mean": 0.09148392559869356,
+     "cos_std": 0.0,
+     "ratio_mean": 4.873480312948132,
+     "ratio_std": 0.0
+    },
+    "lm_head": {
+     "cos_mean": 0.42163963189874293,
+     "cos_std": 0.0,
+     "ratio_mean": 2.0701328051685284,
+     "ratio_std": 0.0
+    },
+    "lambdas": {
+     "cos_mean": 0.5013627646624165,
+     "cos_std": 0.0,
+     "ratio_mean": 1.4379288364761438,
+     "ratio_std": 0.0
+    },
+    "ve": {
+     "cos_mean": 0.034608869129075986,
+     "cos_std": 0.0,
+     "ratio_mean": 5.403573635996278,
+     "ratio_std": 0.0
+    },
+    "q": {
+     "cos_mean": 0.01634960646772047,
+     "cos_std": 0.0,
+     "ratio_mean": 58.761063175234035,
+     "ratio_std": 0.0
+    },
+    "k": {
+     "cos_mean": 5.568314127661514e-05,
+     "cos_std": 0.0,
+     "ratio_mean": 107.67618774127948,
+     "ratio_std": 0.0
+    },
+    "v": {
+     "cos_mean": 0.0312909544082452,
+     "cos_std": 0.0,
+     "ratio_mean": 1.9701214991429064,
+     "ratio_std": 0.0
+    },
+    "gate": {
+     "cos_mean": 0.00849470575990223,
+     "cos_std": 0.0,
+     "ratio_mean": 16.54807400001318,
+     "ratio_std": 0.0
+    },
+    "attn_out": {
+     "cos_mean": 0.07122960528419468,
+     "cos_std": 0.0,
+     "ratio_mean": 7.757816106502349,
+     "ratio_std": 0.0
+    },
+    "mlp_in": {
+     "cos_mean": 0.049118739343939545,
+     "cos_std": 0.0,
+     "ratio_mean": 12.757491404063572,
+     "ratio_std": 0.0
+    },
+    "mlp_out": {
+     "cos_mean": 0.055852390788041335,
+     "cos_std": 0.0,
+     "ratio_mean": 9.582566564935854,
+     "ratio_std": 0.0
+    }
+   },
+   "full": {
+    "mean": 0.40432533567155127,
+    "std": 0.0
+   },
+   "value_subset": {
+    "mean": 0.03318452312473522,
+    "std": 0.0
+   },
+   "seconds_mean": 34.36849289998645,
+   "peak_gib_max": 6.394739627838135
+  },
+  "C": {
+   "settings": {
+    "writers": [
+     38,
+     32,
+     16,
+     10,
+     6,
+     4,
+     2,
+     2
+    ],
+    "hidden": [
+     38,
+     32,
+     16,
+     10,
+     6,
+     4,
+     2,
+     2
+    ],
+    "hubs": [
+     6,
+     6,
+     4,
+     2,
+     2,
+     2,
+     2,
+     2
+    ],
+    "embedding": 10,
+    "head": 1024,
+    "local": {
+     "q": 2,
+     "v": 0,
+     "gate": 6,
+     "k": 12,
+     "ve": 0
+    },
+    "nrep": 2,
+    "lr": 0.25,
+    "momentum": 0.95,
+    "gamma": 0.98,
+    "value_credit": "analytic",
+    "value_gamma": 1.0
+   },
+   "per_param": {
+    "resid_lambdas": {
+     "cos_mean": 0.41008110787059887,
+     "cos_std": 0.0,
+     "ratio_mean": 0.8895383706783055,
+     "ratio_std": 0.0,
+     "type": "lambdas"
+    },
+    "x0_lambdas": {
+     "cos_mean": 0.592644421454234,
+     "cos_std": 0.0,
+     "ratio_mean": 1.9863193022739822,
+     "ratio_std": 0.0,
+     "type": "lambdas"
+    },
+    "transformer.wte.weight": {
+     "cos_mean": 0.09148392559873708,
+     "cos_std": 0.0,
+     "ratio_mean": 4.873480312944755,
+     "ratio_std": 0.0,
+     "type": "wte"
+    },
+    "transformer.h.0.attn.c_q.weight": {
+     "cos_mean": 0.007580847965798735,
+     "cos_std": 0.0,
+     "ratio_mean": 34.4021595340391,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.0.attn.c_k.weight": {
+     "cos_mean": 0.002427622119270286,
+     "cos_std": 0.0,
+     "ratio_mean": 60.76572779775607,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.0.attn.c_v.weight": {
+     "cos_mean": 0.054378545447427665,
+     "cos_std": 0.0,
+     "ratio_mean": 4.698812456259548,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.0.attn.c_proj.weight": {
+     "cos_mean": 0.12380799292503496,
+     "cos_std": 0.0,
+     "ratio_mean": 2.184641187626469,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.0.mlp.c_fc.weight": {
+     "cos_mean": 0.09192471430427615,
+     "cos_std": 0.0,
+     "ratio_mean": 5.053715610581518,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.0.mlp.c_proj.weight": {
+     "cos_mean": 0.05598681339118867,
+     "cos_std": 0.0,
+     "ratio_mean": 5.3730207286285925,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.1.attn.c_q.weight": {
+     "cos_mean": 0.015810796250154597,
+     "cos_std": 0.0,
+     "ratio_mean": 37.5609537612479,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.1.attn.c_k.weight": {
+     "cos_mean": 0.002179815674622234,
+     "cos_std": 0.0,
+     "ratio_mean": 68.18609738736265,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.1.attn.c_v.weight": {
+     "cos_mean": -0.0013830819244165223,
+     "cos_std": 0.0,
+     "ratio_mean": 4.998873543172372,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.1.attn.c_proj.weight": {
+     "cos_mean": 0.10359827499387186,
+     "cos_std": 0.0,
+     "ratio_mean": 2.7495882739458506,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.1.attn.ve_gate.weight": {
+     "cos_mean": -0.1441625749585955,
+     "cos_std": 0.0,
+     "ratio_mean": 9.656401697838382,
+     "ratio_std": 0.0,
+     "type": "gate"
+    },
+    "transformer.h.1.mlp.c_fc.weight": {
+     "cos_mean": 0.08088248801807023,
+     "cos_std": 0.0,
+     "ratio_mean": 5.486520678330808,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.1.mlp.c_proj.weight": {
+     "cos_mean": 0.0820480687542075,
+     "cos_std": 0.0,
+     "ratio_mean": 4.266715193786596,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.2.attn.c_q.weight": {
+     "cos_mean": 0.026562733726974912,
+     "cos_std": 0.0,
+     "ratio_mean": 47.33929293016462,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.2.attn.c_k.weight": {
+     "cos_mean": -0.009632656095784323,
+     "cos_std": 0.0,
+     "ratio_mean": 86.52206276206861,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.2.attn.c_v.weight": {
+     "cos_mean": 0.07433009844103301,
+     "cos_std": 0.0,
+     "ratio_mean": 6.545120815978872,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.2.attn.c_proj.weight": {
+     "cos_mean": 0.16414549533568457,
+     "cos_std": 0.0,
+     "ratio_mean": 4.102309521148754,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.2.mlp.c_fc.weight": {
+     "cos_mean": 0.06043835888771601,
+     "cos_std": 0.0,
+     "ratio_mean": 7.795063437213733,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.2.mlp.c_proj.weight": {
+     "cos_mean": 0.07534709080373812,
+     "cos_std": 0.0,
+     "ratio_mean": 5.811407346857488,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.3.attn.c_q.weight": {
+     "cos_mean": -0.00995629690441396,
+     "cos_std": 0.0,
+     "ratio_mean": 67.59286393215491,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.3.attn.c_k.weight": {
+     "cos_mean": 0.011288877432777998,
+     "cos_std": 0.0,
+     "ratio_mean": 125.63309769623594,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.3.attn.c_v.weight": {
+     "cos_mean": 0.029477183754427816,
+     "cos_std": 0.0,
+     "ratio_mean": 10.715385786899683,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.3.attn.c_proj.weight": {
+     "cos_mean": 0.05746027269921741,
+     "cos_std": 0.0,
+     "ratio_mean": 5.642260280069058,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.3.attn.ve_gate.weight": {
+     "cos_mean": -0.016703360269596405,
+     "cos_std": 0.0,
+     "ratio_mean": 19.79494148187642,
+     "ratio_std": 0.0,
+     "type": "gate"
+    },
+    "transformer.h.3.mlp.c_fc.weight": {
+     "cos_mean": 0.04862538959150994,
+     "cos_std": 0.0,
+     "ratio_mean": 9.898599502738085,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.3.mlp.c_proj.weight": {
+     "cos_mean": 0.05815779503406037,
+     "cos_std": 0.0,
+     "ratio_mean": 7.139938578664618,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.4.attn.c_q.weight": {
+     "cos_mean": 0.012601663648211654,
+     "cos_std": 0.0,
+     "ratio_mean": 69.45118063146391,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.4.attn.c_k.weight": {
+     "cos_mean": -0.005887588696590352,
+     "cos_std": 0.0,
+     "ratio_mean": 126.07883482626313,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.4.attn.c_v.weight": {
+     "cos_mean": 0.10771278489785865,
+     "cos_std": 0.0,
+     "ratio_mean": 9.329443691150862,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.4.attn.c_proj.weight": {
+     "cos_mean": 0.021037778398170604,
+     "cos_std": 0.0,
+     "ratio_mean": 7.859626427185657,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.4.mlp.c_fc.weight": {
+     "cos_mean": 0.03376399640414986,
+     "cos_std": 0.0,
+     "ratio_mean": 12.638889850410454,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.4.mlp.c_proj.weight": {
+     "cos_mean": 0.07507518968003433,
+     "cos_std": 0.0,
+     "ratio_mean": 9.415227232408617,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.5.attn.c_q.weight": {
+     "cos_mean": 0.020563146648429013,
+     "cos_std": 0.0,
+     "ratio_mean": 73.35466850191871,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.5.attn.c_k.weight": {
+     "cos_mean": -0.003728304184103078,
+     "cos_std": 0.0,
+     "ratio_mean": 132.18102306858498,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.5.attn.c_v.weight": {
+     "cos_mean": 0.0036529627714280482,
+     "cos_std": 0.0,
+     "ratio_mean": 10.488753398401748,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.5.attn.c_proj.weight": {
+     "cos_mean": 0.058733878793586956,
+     "cos_std": 0.0,
+     "ratio_mean": 10.095442293726814,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.5.attn.ve_gate.weight": {
+     "cos_mean": -0.02529858062264764,
+     "cos_std": 0.0,
+     "ratio_mean": 17.16923160064592,
+     "ratio_std": 0.0,
+     "type": "gate"
+    },
+    "transformer.h.5.mlp.c_fc.weight": {
+     "cos_mean": 0.050497217018674816,
+     "cos_std": 0.0,
+     "ratio_mean": 16.030919763934424,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.5.mlp.c_proj.weight": {
+     "cos_mean": 0.02455960926811767,
+     "cos_std": 0.0,
+     "ratio_mean": 11.7997507383681,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.6.attn.c_q.weight": {
+     "cos_mean": 0.028471413265087567,
+     "cos_std": 0.0,
+     "ratio_mean": 70.32211436062731,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.6.attn.c_k.weight": {
+     "cos_mean": -0.012292179807663551,
+     "cos_std": 0.0,
+     "ratio_mean": 132.04843182663734,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.6.attn.c_v.weight": {
+     "cos_mean": 0.024781114699473476,
+     "cos_std": 0.0,
+     "ratio_mean": 10.889182475255453,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.6.attn.c_proj.weight": {
+     "cos_mean": 0.0015330520529248843,
+     "cos_std": 0.0,
+     "ratio_mean": 14.103379290527235,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.6.mlp.c_fc.weight": {
+     "cos_mean": 0.0055987528993299805,
+     "cos_std": 0.0,
+     "ratio_mean": 22.15720331552093,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.6.mlp.c_proj.weight": {
+     "cos_mean": 0.00813203969104043,
+     "cos_std": 0.0,
+     "ratio_mean": 16.394507023606806,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "transformer.h.7.attn.c_q.weight": {
+     "cos_mean": 0.02916254714152123,
+     "cos_std": 0.0,
+     "ratio_mean": 70.0652717502558,
+     "ratio_std": 0.0,
+     "type": "q"
+    },
+    "transformer.h.7.attn.c_k.weight": {
+     "cos_mean": 0.016089878687683707,
+     "cos_std": 0.0,
+     "ratio_mean": 129.99422656532704,
+     "ratio_std": 0.0,
+     "type": "k"
+    },
+    "transformer.h.7.attn.c_v.weight": {
+     "cos_mean": 0.03258310697762957,
+     "cos_std": 0.0,
+     "ratio_mean": 10.51225140647319,
+     "ratio_std": 0.0,
+     "type": "v"
+    },
+    "transformer.h.7.attn.c_proj.weight": {
+     "cos_mean": 0.039520097075066166,
+     "cos_std": 0.0,
+     "ratio_mean": 15.325281577788957,
+     "ratio_std": 0.0,
+     "type": "attn_out"
+    },
+    "transformer.h.7.attn.ve_gate.weight": {
+     "cos_mean": 0.22014333889044846,
+     "cos_std": 0.0,
+     "ratio_mean": 19.571721219691998,
+     "ratio_std": 0.0,
+     "type": "gate"
+    },
+    "transformer.h.7.mlp.c_fc.weight": {
+     "cos_mean": 0.021218997627789362,
+     "cos_std": 0.0,
+     "ratio_mean": 22.99901907377862,
+     "ratio_std": 0.0,
+     "type": "mlp_in"
+    },
+    "transformer.h.7.mlp.c_proj.weight": {
+     "cos_mean": 0.0675125196819436,
+     "cos_std": 0.0,
+     "ratio_mean": 16.459965677166018,
+     "ratio_std": 0.0,
+     "type": "mlp_out"
+    },
+    "lm_head.weight": {
+     "cos_mean": 0.42163963189874293,
+     "cos_std": 0.0,
+     "ratio_mean": 2.0701328051685284,
+     "ratio_std": 0.0,
+     "type": "lm_head"
+    },
+    "value_embeds.1.weight": {
+     "cos_mean": 0.05576582407494953,
+     "cos_std": 0.0,
+     "ratio_mean": 5.226200348223209,
+     "ratio_std": 0.0,
+     "type": "ve"
+    },
+    "value_embeds.3.weight": {
+     "cos_mean": 0.04111169540811015,
+     "cos_std": 0.0,
+     "ratio_mean": 9.392341543158354,
+     "ratio_std": 0.0,
+     "type": "ve"
+    },
+    "value_embeds.5.weight": {
+     "cos_mean": 0.03441472044078689,
+     "cos_std": 0.0,
+     "ratio_mean": 10.429870964269009,
+     "ratio_std": 0.0,
+     "type": "ve"
+    },
+    "value_embeds.7.weight": {
+     "cos_mean": 0.049262277909734906,
+     "cos_std": 0.0,
+     "ratio_mean": 11.075919252502098,
+     "ratio_std": 0.0,
+     "type": "ve"
+    }
+   },
+   "per_type": {
+    "wte": {
+     "cos_mean": 0.09148392559873708,
+     "cos_std": 0.0,
+     "ratio_mean": 4.873480312944755,
+     "ratio_std": 0.0
+    },
+    "lm_head": {
+     "cos_mean": 0.42163963189874293,
+     "cos_std": 0.0,
+     "ratio_mean": 2.0701328051685284,
+     "ratio_std": 0.0
+    },
+    "lambdas": {
+     "cos_mean": 0.5013627646624165,
+     "cos_std": 0.0,
+     "ratio_mean": 1.4379288364761438,
+     "ratio_std": 0.0
+    },
+    "ve": {
+     "cos_mean": 0.04513862945839537,
+     "cos_std": 0.0,
+     "ratio_mean": 9.031083027038168,
+     "ratio_std": 0.0
+    },
+    "q": {
+     "cos_mean": 0.01634960646772047,
+     "cos_std": 0.0,
+     "ratio_mean": 58.761063175234035,
+     "ratio_std": 0.0
+    },
+    "k": {
+     "cos_mean": 5.568314127661514e-05,
+     "cos_std": 0.0,
+     "ratio_mean": 107.67618774127948,
+     "ratio_std": 0.0
+    },
+    "v": {
+     "cos_mean": 0.04069158938310771,
+     "cos_std": 0.0,
+     "ratio_mean": 8.522227946698965,
+     "ratio_std": 0.0
+    },
+    "gate": {
+     "cos_mean": 0.00849470575990223,
+     "cos_std": 0.0,
+     "ratio_mean": 16.54807400001318,
+     "ratio_std": 0.0
+    },
+    "attn_out": {
+     "cos_mean": 0.07122960528419468,
+     "cos_std": 0.0,
+     "ratio_mean": 7.757816106502349,
+     "ratio_std": 0.0
+    },
+    "mlp_in": {
+     "cos_mean": 0.049118739343939545,
+     "cos_std": 0.0,
+     "ratio_mean": 12.757491404063572,
+     "ratio_std": 0.0
+    },
+    "mlp_out": {
+     "cos_mean": 0.055852390788041335,
+     "cos_std": 0.0,
+     "ratio_mean": 9.582566564935854,
+     "ratio_std": 0.0
+    }
+   },
+   "full": {
+    "mean": 0.40373901494794734,
+    "std": 0.0
+   },
+   "value_subset": {
+    "mean": 0.039197717784400246,
+    "std": 0.0
+   },
+   "seconds_mean": 49.001311300031375,
+   "peak_gib_max": 6.394739627838135
+  }
+ },
+ "records": [
+  {
+   "variant": "A",
+   "seed": 0,
+   "batch": 0,
+   "per_type": {
+    "wte": {
+     "cos_mean": 0.09148392559888367,
+     "ratio_mean": 4.873480312942168
+    },
+    "lm_head": {
+     "cos_mean": 0.42163963189874293,
+     "ratio_mean": 2.0701328051685284
+    },
+    "lambdas": {
+     "cos_mean": 0.6063333455871508,
+     "ratio_mean": 1.2644132409299282
+    },
+    "ve": {
+     "cos_mean": 0.0015432143065445714,
+     "ratio_mean": 109.6533983222876
+    },
+    "q": {
+     "cos_mean": 0.01634960646772047,
+     "ratio_mean": 58.761063175234035
+    },
+    "k": {
+     "cos_mean": 0.0020718196540664502,
+     "ratio_mean": 107.30560313347952
+    },
+    "v": {
+     "cos_mean": 0.011214360502743423,
+     "ratio_mean": 14.452869503316307
+    },
+    "gate": {
+     "cos_mean": 0.10115304892723682,
+     "ratio_mean": 16.800053384819996
+    },
+    "attn_out": {
+     "cos_mean": 0.07122960528419468,
+     "ratio_mean": 7.757816106502349
+    },
+    "mlp_in": {
+     "cos_mean": 0.049118739343939545,
+     "ratio_mean": 12.757491404063572
+    },
+    "mlp_out": {
+     "cos_mean": 0.055852390788041335,
+     "ratio_mean": 9.582566564935854
+    }
+   },
+   "full": 0.40240865650723123,
+   "value_subset": 0.005364269611956539,
+   "seconds": 326.89515520003624
+  },
+  {
+   "variant": "B",
+   "seed": 0,
+   "batch": 0,
+   "per_type": {
+    "wte": {
+     "cos_mean": 0.09148392559869356,
+     "ratio_mean": 4.873480312948132
+    },
+    "lm_head": {
+     "cos_mean": 0.42163963189874293,
+     "ratio_mean": 2.0701328051685284
+    },
+    "lambdas": {
+     "cos_mean": 0.5013627646624165,
+     "ratio_mean": 1.4379288364761438
+    },
+    "ve": {
+     "cos_mean": 0.034608869129075986,
+     "ratio_mean": 5.403573635996278
+    },
+    "q": {
+     "cos_mean": 0.01634960646772047,
+     "ratio_mean": 58.761063175234035
+    },
+    "k": {
+     "cos_mean": 5.568314127661514e-05,
+     "ratio_mean": 107.67618774127948
+    },
+    "v": {
+     "cos_mean": 0.0312909544082452,
+     "ratio_mean": 1.9701214991429064
+    },
+    "gate": {
+     "cos_mean": 0.00849470575990223,
+     "ratio_mean": 16.54807400001318
+    },
+    "attn_out": {
+     "cos_mean": 0.07122960528419468,
+     "ratio_mean": 7.757816106502349
+    },
+    "mlp_in": {
+     "cos_mean": 0.049118739343939545,
+     "ratio_mean": 12.757491404063572
+    },
+    "mlp_out": {
+     "cos_mean": 0.055852390788041335,
+     "ratio_mean": 9.582566564935854
+    }
+   },
+   "full": 0.40432533567155127,
+   "value_subset": 0.03318452312473522,
+   "seconds": 34.36849289998645
+  },
+  {
+   "variant": "C",
+   "seed": 0,
+   "batch": 0,
+   "per_type": {
+    "wte": {
+     "cos_mean": 0.09148392559873708,
+     "ratio_mean": 4.873480312944755
+    },
+    "lm_head": {
+     "cos_mean": 0.42163963189874293,
+     "ratio_mean": 2.0701328051685284
+    },
+    "lambdas": {
+     "cos_mean": 0.5013627646624165,
+     "ratio_mean": 1.4379288364761438
+    },
+    "ve": {
+     "cos_mean": 0.04513862945839537,
+     "ratio_mean": 9.031083027038168
+    },
+    "q": {
+     "cos_mean": 0.01634960646772047,
+     "ratio_mean": 58.761063175234035
+    },
+    "k": {
+     "cos_mean": 5.568314127661514e-05,
+     "ratio_mean": 107.67618774127948
+    },
+    "v": {
+     "cos_mean": 0.04069158938310771,
+     "ratio_mean": 8.522227946698965
+    },
+    "gate": {
+     "cos_mean": 0.00849470575990223,
+     "ratio_mean": 16.54807400001318
+    },
+    "attn_out": {
+     "cos_mean": 0.07122960528419468,
+     "ratio_mean": 7.757816106502349
+    },
+    "mlp_in": {
+     "cos_mean": 0.049118739343939545,
+     "ratio_mean": 12.757491404063572
+    },
+    "mlp_out": {
+     "cos_mean": 0.055852390788041335,
+     "ratio_mean": 9.582566564935854
+    }
+   },
+   "full": 0.40373901494794734,
+   "value_subset": 0.039197717784400246,
+   "seconds": 49.001311300031375
+  }
+ ]
+}
