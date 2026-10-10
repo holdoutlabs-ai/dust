@@ -1,0 +1,41 @@
+ L gamma site                          win  ve     K  min_cos   ratio       rel cos_mean   slope
+ 2  0.98 transformer.h.0.attn.c_v       64   n  4096  0.96589  1.0334  7.05e-02  0.98847  -1.005
+ 2  0.98 transformer.h.1.attn.c_v      128   y  4096  0.96677  1.0302  6.75e-02  0.98869  -0.990
+ 2  0.98 value_embeds.1                128   y  4096  0.96837  1.0340  6.58e-02  0.98926  -1.002
+ 2   0.9 transformer.h.0.attn.c_v       64   n  4096  0.98059  1.0178  3.97e-02  0.99348  -1.000
+ 2   0.9 transformer.h.1.attn.c_v      128   y  4096  0.98297  1.0244  3.51e-02  0.99429  -1.000
+ 2   0.9 value_embeds.1                128   y  4096  0.98260  1.0105  3.48e-02  0.99425  -1.006
+ 2   0.5 transformer.h.0.attn.c_v       64   n  4096  0.98876  1.0063  2.23e-02  0.99626  -1.004
+ 2   0.5 transformer.h.1.attn.c_v      128   y  4096  0.99051  1.0082  1.89e-02  0.99677  -1.004
+ 2   0.5 value_embeds.1                128   y  4096  0.98955  1.0105  2.06e-02  0.99664  -1.002
+ 4  0.98 transformer.h.0.attn.c_v       64   n  4096  0.96545  1.0326  7.08e-02  0.98836  -1.003
+ 4  0.98 transformer.h.1.attn.c_v       64   y  4096  0.96529  1.0289  7.11e-02  0.98818  -0.996
+ 4  0.98 transformer.h.2.attn.c_v       64   n  4096  0.96402  1.0371  7.45e-02  0.98792  -0.996
+ 4  0.98 transformer.h.3.attn.c_v      128   y  4096  0.96764  1.0360  6.80e-02  0.98898  -1.004
+ 4  0.98 value_embeds.1                 64   y  4096  0.96862  1.0291  6.54e-02  0.98944  -1.001
+ 4  0.98 value_embeds.3                128   y  4096  0.96582  1.0354  7.14e-02  0.98843  -0.998
+ 4   0.9 transformer.h.0.attn.c_v       64   n  4096  0.98062  1.0196  3.92e-02  0.99361  -1.008
+ 4   0.9 transformer.h.1.attn.c_v       64   y  4096  0.98127  1.0233  3.83e-02  0.99377  -0.997
+ 4   0.9 transformer.h.2.attn.c_v       64   n  4096  0.97956  1.0238  4.17e-02  0.99323  -0.998
+ 4   0.9 transformer.h.3.attn.c_v      128   y  4096  0.98267  1.0187  3.47e-02  0.99426  -1.000
+ 4   0.9 value_embeds.1                 64   y  4096  0.98248  1.0128  3.51e-02  0.99407  -1.006
+ 4   0.9 value_embeds.3                128   y  4096  0.98170  1.0169  3.71e-02  0.99409  -0.999
+ 4   0.5 transformer.h.0.attn.c_v       64   n  4096  0.98862  1.0077  2.24e-02  0.99622  -0.997
+ 4   0.5 transformer.h.1.attn.c_v       64   y  4096  0.98942  1.0116  2.10e-02  0.99658  -0.993
+ 4   0.5 transformer.h.2.attn.c_v       64   n  4096  0.98799  1.0139  2.44e-02  0.99591  -1.000
+ 4   0.5 transformer.h.3.attn.c_v      128   y  4096  0.99057  1.0094  1.83e-02  0.99696  -0.997
+ 4   0.5 value_embeds.1                 64   y  4096  0.98983  1.0091  1.96e-02  0.99682  -1.003
+ 4   0.5 value_embeds.3                128   y  4096  0.99044  1.0110  1.89e-02  0.99682  -0.999
+control L2 transformer.h.0.attn.c_v: gamma=0.5 vs B cos=0.9890 rel=2.23e-02 | vs gamma=1.0 cos=0.5877 rel=6.67e-01
+control L2 transformer.h.1.attn.c_v: gamma=0.5 vs B cos=0.9906 rel=1.89e-02 | vs gamma=1.0 cos=0.5998 rel=6.46e-01
+control L2 value_embeds.1: gamma=0.5 vs B cos=0.9897 rel=2.10e-02 | vs gamma=1.0 cos=0.5973 rel=6.51e-01
+control L4 transformer.h.0.attn.c_v: gamma=0.5 vs B cos=0.9890 rel=2.22e-02 | vs gamma=1.0 cos=0.5874 rel=6.68e-01
+control L4 transformer.h.1.attn.c_v: gamma=0.5 vs B cos=0.9900 rel=2.04e-02 | vs gamma=1.0 cos=0.5910 rel=6.58e-01
+control L4 transformer.h.2.attn.c_v: gamma=0.5 vs B cos=0.9880 rel=2.46e-02 | vs gamma=1.0 cos=0.5699 rel=6.86e-01
+control L4 transformer.h.3.attn.c_v: gamma=0.5 vs B cos=0.9913 rel=1.78e-02 | vs gamma=1.0 cos=0.6158 rel=6.25e-01
+control L4 value_embeds.1: gamma=0.5 vs B cos=0.9898 rel=2.06e-02 | vs gamma=1.0 cos=0.6151 rel=6.32e-01
+control L4 value_embeds.3: gamma=0.5 vs B cos=0.9904 rel=1.93e-02 | vs gamma=1.0 cos=0.6094 rel=6.33e-01
+checks: 117/117 passed
+informational (original PLAN thresholds, not gating): 23/54 met
+passed=True  elapsed=121.69s
+wrote results\exp1-value-credit\3.1-regression.json

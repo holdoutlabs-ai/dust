@@ -1,0 +1,98 @@
+{
+  "criterion": "cos > 0.9999 and |ratio - 1| < 1e-4, gamma = 1, targets = autograd dL/do (summed loss)",
+  "torch": "2.10.0+cu128",
+  "dtype": "float32 CPU",
+  "rows": [
+    {
+      "n_layer": 2,
+      "block": 0,
+      "site": "transformer.h.0.attn.c_v",
+      "window": 64,
+      "error_cos": 0.9999999999999709,
+      "error_ratio": 0.9999999638679099,
+      "weight_cos": 0.9999999999999448,
+      "weight_ratio": 0.9999999561527987
+    },
+    {
+      "n_layer": 2,
+      "block": 1,
+      "site": "transformer.h.1.attn.c_v",
+      "window": 128,
+      "error_cos": 0.9999999999999536,
+      "error_ratio": 1.0000000033988385,
+      "weight_cos": 0.9999999999999568,
+      "weight_ratio": 1.0000000105532598
+    },
+    {
+      "n_layer": 2,
+      "block": 1,
+      "site": "value_embeds.1",
+      "window": 128,
+      "error_cos": 0.9999999999999541,
+      "error_ratio": 1.0000000084741412,
+      "weight_cos": 0.999999999999956,
+      "weight_ratio": 1.0000000083271001
+    },
+    {
+      "n_layer": 4,
+      "block": 0,
+      "site": "transformer.h.0.attn.c_v",
+      "window": 64,
+      "error_cos": 0.9999999999999727,
+      "error_ratio": 0.9999999833783466,
+      "weight_cos": 0.9999999999999502,
+      "weight_ratio": 0.9999999823751922
+    },
+    {
+      "n_layer": 4,
+      "block": 1,
+      "site": "transformer.h.1.attn.c_v",
+      "window": 64,
+      "error_cos": 0.9999999999999722,
+      "error_ratio": 0.999999987240332,
+      "weight_cos": 0.9999999999999691,
+      "weight_ratio": 0.9999999784413675
+    },
+    {
+      "n_layer": 4,
+      "block": 1,
+      "site": "value_embeds.1",
+      "window": 64,
+      "error_cos": 0.9999999999999712,
+      "error_ratio": 1.0000000095325758,
+      "weight_cos": 0.9999999999999717,
+      "weight_ratio": 1.0000000097663793
+    },
+    {
+      "n_layer": 4,
+      "block": 2,
+      "site": "transformer.h.2.attn.c_v",
+      "window": 64,
+      "error_cos": 0.9999999999999676,
+      "error_ratio": 0.9999999813038484,
+      "weight_cos": 0.9999999999999736,
+      "weight_ratio": 0.9999999696796475
+    },
+    {
+      "n_layer": 4,
+      "block": 3,
+      "site": "transformer.h.3.attn.c_v",
+      "window": 128,
+      "error_cos": 0.9999999999999579,
+      "error_ratio": 0.999999983331303,
+      "weight_cos": 0.9999999999999757,
+      "weight_ratio": 0.9999999953773301
+    },
+    {
+      "n_layer": 4,
+      "block": 3,
+      "site": "value_embeds.3",
+      "window": 128,
+      "error_cos": 0.9999999999999555,
+      "error_ratio": 0.9999999779307449,
+      "weight_cos": 0.9999999999999559,
+      "weight_ratio": 0.9999999776611681
+    }
+  ],
+  "passed": true
+}

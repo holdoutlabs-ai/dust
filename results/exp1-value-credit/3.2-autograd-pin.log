@@ -1,0 +1,10 @@
+L2 b0 transformer.h.0.attn.c_v   w= 64 err cos=1.00000000 ratio=0.99999996 | weight cos=1.00000000 ratio=0.99999996
+L2 b1 transformer.h.1.attn.c_v   w=128 err cos=1.00000000 ratio=1.00000000 | weight cos=1.00000000 ratio=1.00000001
+L2 b1 value_embeds.1             w=128 err cos=1.00000000 ratio=1.00000001 | weight cos=1.00000000 ratio=1.00000001
+L4 b0 transformer.h.0.attn.c_v   w= 64 err cos=1.00000000 ratio=0.99999998 | weight cos=1.00000000 ratio=0.99999998
+L4 b1 transformer.h.1.attn.c_v   w= 64 err cos=1.00000000 ratio=0.99999999 | weight cos=1.00000000 ratio=0.99999998
+L4 b1 value_embeds.1             w= 64 err cos=1.00000000 ratio=1.00000001 | weight cos=1.00000000 ratio=1.00000001
+L4 b2 transformer.h.2.attn.c_v   w= 64 err cos=1.00000000 ratio=0.99999998 | weight cos=1.00000000 ratio=0.99999997
+L4 b3 transformer.h.3.attn.c_v   w=128 err cos=1.00000000 ratio=0.99999998 | weight cos=1.00000000 ratio=1.00000000
+L4 b3 value_embeds.3             w=128 err cos=1.00000000 ratio=0.99999998 | weight cos=1.00000000 ratio=0.99999998
+passed True
