@@ -9,10 +9,10 @@ Interpreter: `D:/Micromamba/micromambaenv/envs/dust/python.exe`.
 | WP | Name | Owner | Depends | Files | Status | Review / rounds |
 |---|---|---|---|---|---|---|
 | 0 | Setup: env, CLAUDE.md, agents, tiny config, conftest, smoke test | dust-lead | – | CLAUDE.md, .claude/agents/*, diagnostics/{__init__,tiny}.py, tests/{conftest,test_smoke}.py | done | – |
-| 1 | `dust.py` flag: Recipe fields, `analytic_value_errors`, step wiring, `draws==0` guard, `recipe()`, CLI + config.json, `estimate()` split for cosine; `model.py` sync comment | dust-dev | 0 | dust.py, model.py | todo (brief ready: `docs/briefs/WP1.md`) | |
-| 1t | Tests for WP1: autograd pin (stage 3.2), sampled path unchanged, flag/CLI plumbing | dust-test-writer | 0 | tests/test_analytic_autograd.py, tests/test_value_credit_flag.py | todo (same brief) | |
-| 2 | `diagnostics/regression.py` (stage 3.1) + pytest wrapper | dust-dev / dust-test-writer | 1 | diagnostics/regression.py, tests/test_regression.py | todo | |
-| 3 | `diagnostics/cosine.py` (per-parameter cosine vs autograd, layer-type table, CLI) | dust-dev | 1 | diagnostics/cosine.py, tests/test_cosine.py | todo | |
+| 1 | `dust.py` flag: Recipe fields, `analytic_value_errors`, step wiring, `draws==0` guard, `recipe()`, CLI + config.json, `estimate()` split for cosine; `model.py` sync comment | dust-dev | 0 | dust.py, model.py | done | pass, 1 round (reviewer: in-place scores, lead applied) |
+| 1t | Tests for WP1: autograd pin (stage 3.2), sampled path unchanged, flag/CLI plumbing | dust-test-writer | 0 | tests/test_analytic_autograd.py, tests/test_value_credit_flag.py | done | pass (mutation-checked: Γᵀ, flipped γ, scale, gate, mask, norm, rotary all caught) |
+| 2 | `diagnostics/regression.py` (stage 3.1) + pytest wrapper | dust-dev / dust-test-writer | 1 | diagnostics/regression.py, tests/test_regression.py | in-progress | |
+| 3 | `diagnostics/cosine.py` (per-parameter cosine vs autograd, layer-type table, CLI) | dust-dev | 1 | diagnostics/cosine.py, tests/test_cosine.py | in-progress | |
 
 Waves: {1, 1t} → review → {2, 3} → review.
 
@@ -33,3 +33,9 @@ Waves: {1, 1t} → review → {2, 3} → review.
 - `ve_gate.weight` is zero at init, so gate = 1 everywhere. The `tiny_model` fixture randomizes it;
   any test of the `ve` gate multiplier must do the same.
 - Windows: no NCCL, single GPU only. Upstream targets Linux.
+- WP1 (2026-10-10): on CUDA the analytic path computes rotary+norm on fp32 q/k (the brief requires fp32);
+  `local_errors.processed` rounds qp/kp to bf16, and the model's forward is bf16 throughout. Measured
+  at the paper config on the 3080 (reviewer): cos 0.999998 and norm within 1e-5 against the bf16-rounded version. Negligible;
+  keep this in mind when reading the GPU cosine numbers in 3.3. `analytic_value_errors` at the paper config:
+  0.49 s, peak +917 MiB above capture (384 MiB of it the returned errors); capture itself holds 3.75 GiB.
+- Sampled-mean margins at K=4096, γ=0.5 (WP1t, fixed seed): cos 0.988/0.990/0.991, ratio 1.016/1.008/1.028.

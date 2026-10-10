@@ -42,6 +42,12 @@ class Recipe:
     lr: float
     momentum: float
     gamma: float = 0.98  # attention-internal credit decay per token of lag
+    value_credit: str = 'sampled'  # 'sampled' | 'analytic': v/ve credit by draws or its exact expectation
+    value_gamma: float | None = None  # analytic v/ve credit decay; None uses gamma
+
+    def __post_init__(self):
+        if self.value_credit not in ('sampled', 'analytic'):
+            raise ValueError(f"value_credit must be 'sampled' or 'analytic', got {self.value_credit!r}")
 
 
 DEFAULT_CONFIGS = {
@@ -76,7 +82,7 @@ DEFAULT_CONFIGS = {
 DRAW_CHUNK_SIZES = {256: 2, 1024: 8, 4096: 8, 16384: 16}
 
 
-def recipe(tokens, population):
+def recipe(tokens, population, value_credit='sampled', value_gamma=None):
     """Build a saved config, population counts direct-loss draws only. """
     optimizer = DEFAULT_CONFIGS[tokens]['optimizer'][population]
     nrep = DRAW_CHUNK_SIZES[population]
@@ -86,11 +92,15 @@ def recipe(tokens, population):
     hidden = writers.copy()
     hubs = [v * scale for v in override.get('hubs', [6, 6, 4, 2, 2, 2, 2, 2])]
     embedding, local = 10 * scale, [v * scale for v in [2, 20, 6, 12, 8]]
+    local = dict(zip(('q', 'v', 'gate', 'k', 've'), local))
+    if value_credit == 'analytic':
+        local['v'] = local['ve'] = 0  # credited exactly by DUST.analytic_value_errors; draws not redistributed
 
     return Recipe(
         writers, hidden, hubs, embedding, 4 * population,
-        dict(zip(('q', 'v', 'gate', 'k', 've'), local)),
+        local,
         nrep, **optimizer, gamma=override.get('gamma', 0.98),
+        value_credit=value_credit, value_gamma=value_gamma,
     )
 
 
@@ -320,7 +330,40 @@ class DUST:
                 estimate = torch.einsum('nbth,nbthd->bthd', score.float(), a.view(n, b, t, h, -1))
                 errors[i] += estimate.reshape(b, t, width) / divisor
 
-        return {sites[i]: errors[i] / draws for i in layers}
+        return {sites[i]: errors[i] / max(draws, 1) for i in layers}
+
+    def analytic_value_errors(self, targets, gamma):
+        """Exact expectation of local_errors('v') and ('ve'): e_v[t] = sum_s gamma^(s-t) A[s, t] g_s.
+
+        A is each block's attention matrix [s, t] (query s, key t), rebuilt in fp32 exactly as
+        model.attention computes it (keep the two in sync); g = targets[i], the o@{i} error. Needs a prior
+        capture(x, y). Same scale as local_errors (uncentred, already divided by draws and sigma).
+        """
+        cfg = self.model.config
+        b, t, h, d = self.batch, self.length, cfg.n_head, cfg.n_embd // cfg.n_head
+        cos, sin = self.model.cos[:, :t].float(), self.model.sin[:, :t].float()
+        positions = torch.arange(t, device=self.device)
+        lag = positions[:, None] - positions[None, :]  # [s, t]: output position minus value position
+        errors = {}
+        for i in range(cfg.n_layer):
+            prefix = f'transformer.h.{i}.attn.'
+            q, k = [self.outputs[prefix + 'c_' + name].float().view(b, t, h, d) for name in ('q', 'k')]
+            qp, kp = norm(apply_rotary_emb(q, cos, sin)), norm(apply_rotary_emb(k, cos, sin))
+            window = self.model.window_sizes[i][0]
+            mask = (lag >= 0) & (lag <= window)
+            decay = mask.float() * gamma ** lag.clamp(min=0).float()  # Gamma[s, t]; local_errors' credit is its transpose
+            target = targets[i].float().view(b, t, h, d)
+            e_v = torch.empty(b, t, h, d, device=self.device)
+            for head in range(h):  # one [b, t, t] attention matrix alive at a time
+                scores = torch.einsum('bsd,btd->bst', qp[:, :, head], kp[:, :, head]).div_(math.sqrt(d))
+                weights = scores.masked_fill_(~mask, float('-inf')).softmax(-1).mul_(decay)
+                e_v[:, :, head] = torch.einsum('bst,bsd->btd', weights, target[:, :, head])
+                del scores, weights
+            errors[prefix + 'c_v'] = e_v.reshape(b, t, cfg.n_embd)
+            if has_ve(i, cfg.n_layer):
+                gate = 2 * torch.sigmoid(self.outputs[prefix + 've_gate'].float())
+                errors[f'value_embeds.{i}'] = (e_v * gate.unsqueeze(-1)).reshape(b, t, cfg.n_embd)
+        return errors
 
     def reassemble(self, site, error):
         """The exact local linear map: error times input, or scatter-add for an embedding. """
@@ -351,8 +394,8 @@ class DUST:
         return dict(zip(('resid_lambdas', 'x0_lambdas'), estimate))
 
     @torch.no_grad()
-    def step(self, x, y, optimizer):
-        """One clean pass, direct-loss estimates, local attention estimates, then an SGD update."""
+    def estimate(self, x, y):
+        """One clean pass, direct-loss and local attention estimates: gradients of the summed token loss."""
         self.capture(x, y)
         r, world = self.settings, self.world
         gradients = {}
@@ -381,9 +424,21 @@ class DUST:
 
         gradients['lm_head.weight'] = self.reassemble('lm_head', self.head_error(r.head // world))
         for kind, count in r.local.items():
+            if r.value_credit == 'analytic' and kind in ('v', 've'):
+                continue
             for site, error in self.local_errors(kind, count // world, targets).items():
                 gradients[site + '.weight'] = self.reassemble(site, error)
+        if r.value_credit == 'analytic':
+            gamma = r.value_gamma if r.value_gamma is not None else r.gamma
+            for site, error in self.analytic_value_errors(targets, gamma).items():
+                gradients[site + '.weight'] = self.reassemble(site, error)
         gradients.update(self.scalar_gradients(8 // world))
+        return gradients
+
+    @torch.no_grad()
+    def step(self, x, y, optimizer):
+        """One clean pass, direct-loss estimates, local attention estimates, then an SGD update."""
+        gradients = self.estimate(x, y)
 
         # Dividing the summed estimates by the token count gives the gradient of the mean loss.
         valid_tokens = (y != -1).sum()
@@ -489,6 +544,14 @@ def main():
         '--steps', type=int,
         help='Stop early for a smoke test; the training subset stays unchanged.',
     )
+    parser.add_argument(
+        '--value-credit', choices=('sampled', 'analytic'), default='sampled',
+        help='Value / value-embedding credit: sampled draws (upstream) or their exact expectation.',
+    )
+    parser.add_argument(
+        '--value-gamma', type=float, default=None,
+        help='Credit decay for analytic value credit (default: the recipe gamma).',
+    )
     args = parser.parse_args()
 
     if not torch.cuda.is_available():
@@ -500,7 +563,7 @@ def main():
     if world > 1:
         torch.distributed.init_process_group('nccl', device_id=device)
 
-    settings = recipe(args.tokens, args.population)
+    settings = recipe(args.tokens, args.population, args.value_credit, args.value_gamma)
     defaults = DEFAULT_CONFIGS[args.tokens]
     config = GPTConfig()
     steps = defaults['steps']

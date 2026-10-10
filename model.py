@@ -11,6 +11,7 @@ def attention(q, k, v, window):
 
     A query at position s sees keys at s - window to s.
     """
+    # DUST.analytic_value_errors rebuilds this attention matrix explicitly; keep the two in sync.
     length = q.shape[1]
     positions = torch.arange(length, device=q.device)
     distance = positions[:, None] - positions[None, :]

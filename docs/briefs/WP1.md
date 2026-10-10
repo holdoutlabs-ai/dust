@@ -106,3 +106,45 @@ estimate must be bit-for-bit the same as upstream for the same seed.
    counts unchanged; `analytic` `estimate()` returns finite gradients for every parameter name;
    `local_errors(kind, 0, targets)` returns zeros without error; bad `value_credit` raises ValueError;
    `value_gamma=None` uses `settings.gamma`.
+
+## Clarifications (lead, 2026-10-10, before dispatch)
+
+- **`estimate` keeps `@torch.no_grad()`**, like `step`. `step(x, y, optimizer)` becomes: `gradients =
+  self.estimate(x, y)`, then the existing `valid_tokens` / `zero_grad` / per-parameter loop /
+  `optimizer.step()` / return lines, verbatim. Validate `value_credit` in `Recipe.__post_init__`
+  (`ValueError` unless `'sampled'` or `'analytic'`).
+- **Analytic call placement** in `estimate`: after the `r.local` loop (which `continue`s on `'v'`, `'ve'`
+  when analytic), before `scalar_gradients`. It uses no RNG, so the placement doesn't change draws.
+  In `'sampled'` mode the loop must be the exact upstream loop: no extra RNG calls, same order.
+- **`analytic_value_errors` inputs**: it reads `self.outputs`, `self.batch`, `self.length`, so it needs
+  a prior `capture(x, y)`. `targets[i]` is `[b, t, n_embd]` (fp32 in `step`; cast to fp32 inside).
+- **Autograd pin (acceptance 1), test-writer notes**: `make_model` returns `requires_grad_(False)`;
+  call `model.requires_grad_(True)` for the autograd pass. Run `estimator.capture(x, y)` under
+  `torch.no_grad()`, separate from the autograd forward. The DUST hooks stay registered during the
+  autograd forward; they are no-ops when `capturing` is False and `jitter` is empty, so that's fine.
+  In `CausalSelfAttention.forward`, the `c_v` output gradient equals `∂L/∂values` and
+  `∂L/∂ve = gate · ∂L/∂values`. Use the `tiny_model` fixture (randomized `ve_gate`); for
+  `n_layer=4` build `make_model(tiny_config(n_layer=4), cpu, 42)` and randomize `ve_gate` the same way.
+  Compare reassembled weight gradients with `.grad` of `L = model(x, y, loss_reduction='none').sum()`
+  (summed-loss scale, same as `reassemble`).
+- **Γ orientation (acceptance 2)**: get a small case with
+  `make_model(tiny_config(sequence_len=8), cpu, 42)` (windows: block 0 = 4, block 1 = 8) and a
+  `[1, 8]` token batch, and also set `model.window_sizes[0] = (3, 0)` to cover a window shorter than
+  t−1. The dense reference: explicit loops over `b, h, s, t`, computing `S`, the masked softmax and
+  `Σ_s γ^(s−t) A[s,t] ĝ_s` directly from the cached `q, k, v` outputs, with `norm`/`apply_rotary_emb`
+  from `model.py`. Include an assertion that the transposed-Γ version of the reference *differs* from
+  the analytic output by more than 1e-2 relative (proves the test can fail).
+- **Mean of sampled (acceptance 3)**: if cos > 0.98 / 5% isn't met at K=4096 with a fixed seed, don't
+  loosen it silently. Report the measured cos/ratio in your final message (WP2 does the full ladder).
+  Keep it under ~60 s on CPU.
+- **Sampled path unchanged (acceptance 4), make it an upstream comparison**: in the test, write
+  `git show main:dust.py` (via `subprocess`, cwd = repo root) to `tmp_path/dust_upstream.py`, import it with
+  `importlib.util.spec_from_file_location` (it imports `model` from the repo root, which is on
+  `sys.path` via conftest), and `pytest.skip` if git is unavailable. Build two identical tiny models
+  (same `make_model` seed and the same `ve_gate` randomization), and run upstream `DUST.step` and new
+  `DUST.step` with the same seed and a no-op optimizer (`zero_grad(set_to_none=True)` and `step()` do
+  nothing). Assert `torch.equal` on every `parameter.grad` and equal returned losses. Also assert
+  new `estimate(x, y)[name] / valid_tokens` equals the new step's `.grad` bitwise (same seed, fresh
+  instance). Check `asdict(recipe(tok, pop))` for every tokens × population in `DEFAULT_CONFIGS` equals
+  upstream's, apart from the two new keys (`value_credit='sampled'`, `value_gamma=None`).
+- **Concurrent work**: nothing else is being written during WP1.
