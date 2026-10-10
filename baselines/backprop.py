@@ -11,6 +11,7 @@ import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from dust import GPTConfig, evaluate, file_hash, load_sequences, make_model
+from baselines.optim import build_optimizer
 
 
 DEFAULT_CONFIGS = {
@@ -28,8 +29,9 @@ def make_optimizer(model, lr, momentum):
     return torch.optim.SGD(groups, lr=lr, momentum=momentum)
 
 
-def train_step(model, optimizer, x, y):
-    optimizer.zero_grad(set_to_none=True)
+def train_step(model, optimizers, x, y):
+    for optimizer in optimizers:
+        optimizer.zero_grad(set_to_none=True)
     with torch.autocast(x.device.type, dtype=torch.bfloat16, enabled=x.is_cuda):
         loss = model(x, y)
     if not torch.isfinite(loss):
@@ -38,30 +40,56 @@ def train_step(model, optimizer, x, y):
     for name, parameter in model.named_parameters():
         if parameter.grad is not None and not torch.isfinite(parameter.grad).all():
             raise FloatingPointError(f'Non-finite backpropagation gradient for {name}')
-    optimizer.step()
+    for optimizer in optimizers:
+        optimizer.step()
     return loss.item()
 
 
-def main():
+def parse_args(argv=None):
+    return _parse_args(argv)[1]
+
+
+def _parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--tokens', choices=DEFAULT_CONFIGS, default='1M')
     parser.add_argument('--data-dir', type=Path, default=Path('data'))
     parser.add_argument('--output', type=Path, default=Path('runs/backprop'))
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--lr', type=float, help='Override the base learning rate for the selected token budget.')
-    parser.add_argument('--momentum', type=float, help='Override SGD momentum for the selected token budget.')
+    parser.add_argument('--momentum', type=float, help='SGD/Muon momentum (SGD default: tuned per token budget; Muon default 0.95; not used by adamw).')
     parser.add_argument('--steps', type=int, help='Stop early; keep the full selected training subset.')
-    args = parser.parse_args()
+    parser.add_argument('--optimizer', choices=['sgd', 'adamw', 'muon'], default='sgd')
+    parser.add_argument('--adam-lr', type=float, help='Muon only: AdamW lr for non-block parameters (default 0.008).')
+    args = parser.parse_args(argv)
     defaults = DEFAULT_CONFIGS[args.tokens]
-    args.lr = defaults['lr'] if args.lr is None else args.lr
-    args.momentum = defaults['momentum'] if args.momentum is None else args.momentum
+    if args.optimizer == 'sgd':
+        args.lr = defaults['lr'] if args.lr is None else args.lr
+        args.momentum = defaults['momentum'] if args.momentum is None else args.momentum
+    else:
+        if args.lr is None:
+            parser.error(f'--optimizer {args.optimizer} requires an explicit --lr.')
+        if args.optimizer == 'muon':
+            args.momentum = 0.95 if args.momentum is None else args.momentum
+            args.adam_lr = 0.008 if args.adam_lr is None else args.adam_lr
+    if args.adam_lr is not None and args.optimizer != 'muon':
+        parser.error('--adam-lr applies to --optimizer muon only.')
+    if args.optimizer == 'adamw' and args.momentum is not None:
+        parser.error('--momentum does not apply to --optimizer adamw (betas are fixed at 0.9, 0.95).')
+    return parser, args
+
+
+def main():
+    parser, args = _parse_args()
+    defaults = DEFAULT_CONFIGS[args.tokens]
 
     if not torch.cuda.is_available():
         parser.error('Training requires a CUDA GPU.')
     if int(os.environ.get('WORLD_SIZE', 1)) != 1:
         parser.error('This baseline uses one GPU; launch it with python, not torchrun.')
-    if args.lr <= 0 or not 0 <= args.momentum < 1:
+    if args.lr <= 0 or (args.momentum is not None and not 0 <= args.momentum < 1):
         parser.error('Use a positive learning rate and momentum in [0, 1).')
+    if args.adam_lr is not None and args.adam_lr <= 0:
+        parser.error('Use a positive --adam-lr.')
     device = torch.device('cuda', 0)
     torch.cuda.set_device(device)
     torch.set_float32_matmul_precision('high')
@@ -89,7 +117,13 @@ def main():
     steps = args.steps or steps
 
     model = make_model(config, device, args.seed).requires_grad_(True)
-    optimizer = make_optimizer(model, args.lr, args.momentum)
+    fp32_embeddings = args.optimizer != 'sgd'
+    if fp32_embeddings:
+        # Adam steps (~lr per element) round away on bf16 embeddings (init_weights stores wte and value_embeds in bf16
+        # on CUDA); keep fp32 master weights for adamw/muon. sgd is left exactly as upstream.
+        model.transformer.wte.float()
+        model.value_embeds.float()
+    optimizers = build_optimizer(model, args.optimizer, args.lr, args.momentum, args.adam_lr)
     if args.output.exists() and any(args.output.iterdir()):
         raise FileExistsError(f'Choose an empty output directory: {args.output}')
     args.output.mkdir(parents=True, exist_ok=True)
@@ -98,14 +132,15 @@ def main():
         lr=args.lr, momentum=args.momentum, weight_decay=0.0,
         training_tokens=steps * 8 * config.sequence_len,
         validation_sequences=544, test_sequences=544, model=asdict(config),
-        parameter_groups=[dict(lr=g['lr'], momentum=g['momentum'],
+        parameter_groups=[dict(lr=g['lr'], momentum=g.get('momentum'),
                                parameters=sum(p.numel() for p in g['params']))
-                          for g in optimizer.param_groups],
+                          for optimizer in optimizers for g in optimizer.param_groups],
         source_sha256=file_hash(Path(__file__)),
         model_source_sha256=file_hash(Path(__file__).resolve().parents[1] / 'dust.py'),
         model_sha256=file_hash(Path(__file__).resolve().parents[1] / 'model.py'),
         torch_version=torch.__version__,
         data_sha256={name: file_hash(path) for name, path in paths.items()},
+        optimizer=args.optimizer, adam_lr=args.adam_lr, fp32_embeddings=fp32_embeddings,
     )
     (args.output / 'config.json').write_text(json.dumps(metadata, indent=2) + '\n')
 
@@ -121,11 +156,11 @@ def main():
     history = [dict(step=0, val_loss=best)]
     interval = defaults['eval_interval']
     start = time.monotonic()
-    print(f'Backprop SGD: {args.tokens}, {steps} steps, val={best:.4f}', flush=True)
+    print(f'Backprop {args.optimizer.upper()}: {args.tokens}, {steps} steps, val={best:.4f}', flush=True)
 
     for step in range(1, steps + 1):
         batch = training[(step - 1) * 8:step * 8].to(device)
-        loss = train_step(model, optimizer, batch[:, :-1].contiguous(), batch[:, 1:].contiguous())
+        loss = train_step(model, optimizers, batch[:, :-1].contiguous(), batch[:, 1:].contiguous())
         record = dict(step=step, train_loss=loss, elapsed_seconds=time.monotonic() - start)
         if step == 1 or step % interval == 0 or step == steps:
             value = evaluate(model, validation, device)
