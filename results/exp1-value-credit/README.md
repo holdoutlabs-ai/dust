@@ -40,8 +40,10 @@ Criterion: cos > 0.9999, |ratio − 1| < 1e-4. The window-edge and γ-orientatio
 ## 3.3: cosine ladder at population 256 (2026-10-10, RTX 3080 Laptop)
 
 ```
-$PY -m diagnostics.cosine --config paper --variants A,B,C --population 256 --seeds 0,1,2 --batches 4     --data data/train_1M.pt --device cuda --out results/exp1-value-credit/3.3-cos-init-pop256.json
-$PY -m diagnostics.cosine --config paper --checkpoint runs/bp-1m/best.pt --variants A,B,C --population 256     --seeds 0,1,2 --batches 4 --data data/train_1M.pt --device cuda --out results/exp1-value-credit/3.3-cos-bp1m-pop256.json
+$PY -m diagnostics.cosine --config paper --variants A,B,C --population 256 --seeds 0,1,2 --batches 4 \
+    --data data/train_1M.pt --device cuda --out results/exp1-value-credit/3.3-cos-init-pop256.json
+$PY -m diagnostics.cosine --config paper --checkpoint runs/bp-1m/best.pt --variants A,B,C --population 256 \
+    --seeds 0,1,2 --batches 4 --data data/train_1M.pt --device cuda --out results/exp1-value-credit/3.3-cos-bp1m-pop256.json
 ```
 
 Batches are the first 32 rows of `train_1M.pt` (4 × 8). The noise seeds are 0, 1, 2. Each estimate is paired across variants, so 12 records per variant.
