@@ -9,7 +9,7 @@ Interpreter: `D:/Micromamba/micromambaenv/envs/dust/python.exe` (torch 2.10.0+cu
 | 3.1 regression | `3.1-regression.json`, `.log` | `$PY -m diagnostics.regression --out results/exp1-value-credit/3.1-regression.json` | 1f3b2e8 | **pass**, 117/117 gating checks |
 | 3.2 autograd pin | `3.2-autograd-pin.json`, `.log` | `$PY results/exp1-value-credit/stage_3_2.py` (and `$PY -m pytest tests/test_analytic_autograd.py -q`: 6 passed) | 1f3b2e8 | **pass** |
 | 3.3 cosine ladder | `3.3-cos-{init,bp1m}-pop{256,1024}.json` (+ `.log`) | see §3.3 below | 72d06bf (256), 3d55c10 (1024) | **done**: pop 256 on the 3080, pop 1024 on the rental |
-| 3.4 training | | | | not run (gated) |
+| 3.4 training | `3.4/<variant>-s<seed>/`, `3.4-summary.json` | `docs/rental.md` §4 (job list `rental/queue-all.txt`); `$PY results/exp1-value-credit/analyze_3_4.py` | 3d55c10 | **done**: B − A val −0.015 ± 0.030, C − A −0.017 ± 0.020, C − B −0.002 ± 0.011 (n = 3) |
 
 ## 3.1: B equals A's mean (2026-10-10)
 
@@ -99,3 +99,5 @@ of gate gave A 0.091 vs B 0.064 (SE 0.037).
 A **14.90 s**, B **14.87 s**, C **14.80 s** (spread within a variant ≤ 0.1 s); peak 6.50 / 6.49 / 6.49 GiB. **B/C save < 1%** per step:
 the skipped `v`/`ve` draws only recompute one block's attention. The laptop's apparent 5–7% saving was thermal noise.
 `dust.py --steps 2` gate run: 45 s wall, step 1 at 14.9 s, peak 7.18 GiB (`rental/smoke-A.log`).
+
+Write-up: `REPORT.md`.

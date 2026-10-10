@@ -23,7 +23,7 @@ Waves: {1, 1t} → review → {2, 3} → review.
 | 3.1 | B equals A's mean (K ∈ {64…4096}, γ ∈ {0.98, 0.9, 0.5}, short window) | CPU | – | pass | `results/exp1-value-credit/3.1-regression.json`: 117/117 (amended rule), max abs(p−1) 0.012, slopes −1.01…−0.99 |
 | 3.2 | C with true ∂L/∂o reproduces autograd ∂L/∂v, ∂L/∂ve (cos > 0.9999) | CPU | – | pass | `results/exp1-value-credit/3.2-autograd-pin.json`: cos 1.00000000, ratio within 4e-8 |
 | 3.3 | Cosine ladder, init + backprop checkpoint, A/B/C × pop × seeds × batches | 3080 (256) + rented 4×3090 (1024) | Noah: approved | done | v cos A/B/C pop 1024: init .098/.311/.525, bp .033/.125/.251; others unchanged within noise |
-| 3.4 | Training 3 variants × 3 seeds, 1M tokens, pop 256 | GPU | Noah: after `--steps 2` timing | todo | |
+| 3.4 | Training 3 variants × 3 seeds, 1M tokens, pop 256 | rented 4×3090 | Noah: approved | done | val A 6.093, B 6.078, C 6.077 (n=3); paired B−A −0.015 ± 0.030, C−B −0.002 ± 0.011. See REPORT.md |
 
 ## Notes
 

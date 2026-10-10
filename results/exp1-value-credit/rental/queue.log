@@ -1,0 +1,22 @@
+19:51:34 gpu0 start cosinit
+19:51:35 gpu1 start cosbp
+19:51:36 gpu2 start A-s42
+19:51:37 gpu3 start B-s42
+20:08:42 gpu3 end B-s42 exit=0
+20:08:42 gpu3 start C-s42
+20:09:21 gpu2 end A-s42 exit=0
+20:09:21 gpu2 start A-s43
+20:24:28 gpu0 end cosinit exit=0
+20:24:28 gpu0 start B-s43
+20:25:30 gpu1 end cosbp exit=0
+20:25:30 gpu1 start C-s43
+20:25:48 gpu3 end C-s42 exit=0
+20:25:48 gpu3 start A-s44
+20:27:04 gpu2 end A-s43 exit=0
+20:27:04 gpu2 start B-s44
+20:41:18 gpu0 end B-s43 exit=0
+20:41:18 gpu0 start C-s44
+20:42:49 gpu1 end C-s43 exit=0
+20:43:16 gpu3 end A-s44 exit=0
+20:44:24 gpu2 end B-s44 exit=0
+20:58:07 gpu0 end C-s44 exit=0
