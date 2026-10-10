@@ -20,7 +20,8 @@ git clone -b exp/value-credit https://github.com/holdoutlabs-ai/dust.git && cd d
 git fetch -q origin main:main             # upstream-equality tests read main:dust.py
 git log --oneline -1                      # record the commit
 uv venv -q -p 3.12 /root/venv
-VIRTUAL_ENV=/root/venv uv pip install torch==2.10.0 pytest numpy     --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple   # ~3 min
+VIRTUAL_ENV=/root/venv uv pip install torch==2.10.0 pytest numpy \
+    --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple   # ~3 min
 /root/venv/bin/python -c "import torch; print(torch.__version__, torch.cuda.device_count())"   # 2.10.0+cu128 4
 /root/venv/bin/python -m pytest -q        # ~2 min; expect 62 passed, 0 skipped
 mkdir -p data runs/bp-1m runs/logs
