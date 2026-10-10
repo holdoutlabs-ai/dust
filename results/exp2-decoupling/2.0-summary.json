@@ -1,0 +1,426 @@
+{
+  "runs_dir": "results\\exp2-decoupling\\2.0",
+  "reference": "muon-lr0.02-s",
+  "rows": [
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.003,
+        "grad_delay": 0,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.003",
+      "runs": [
+        "muon-lr0.02-adam0.003-s42"
+      ],
+      "best_val": {
+        "mean": 4.340083066154929,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 4.33023738861084,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 500.68591717899835,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.010216825148638087
+        },
+        "mean": 0.010216825148638087,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 0,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.008",
+      "runs": [
+        "muon-lr0.02-s42",
+        "muon-lr0.02-s43",
+        "muon-lr0.02-s44"
+      ],
+      "best_val": {
+        "mean": 4.348098745533065,
+        "std": 0.026249279929601535,
+        "n": 3
+      },
+      "test": {
+        "mean": 4.334272160249598,
+        "std": 0.025191766834802266,
+        "n": 3
+      },
+      "seconds_mean": 699.6473047740001,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.0,
+          "43": 0.0,
+          "44": 0.0
+        },
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.01,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 0,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.01 momentum=0.95 adam_lr=0.008",
+      "runs": [
+        "muon-lr0.01-s42"
+      ],
+      "best_val": {
+        "mean": 4.35979139103609,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 4.348168148713953,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 517.5848254929952,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.029925150029799674
+        },
+        "mean": 0.029925150029799674,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.04,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 0,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.04 momentum=0.95 adam_lr=0.008",
+      "runs": [
+        "muon-lr0.04-s42"
+      ],
+      "best_val": {
+        "mean": 4.416975862839642,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 4.404666003058939,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 553.2795840440012,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.0871096218333518
+        },
+        "mean": 0.0871096218333518,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.03,
+        "grad_delay": 0,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.03",
+      "runs": [
+        "muon-lr0.02-adam0.03-s42"
+      ],
+      "best_val": {
+        "mean": 4.436519678901224,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 4.418048437903909,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 692.631426275002,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.10665343789493331
+        },
+        "mean": 0.10665343789493331,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "adamw",
+        "lr": 0.001,
+        "momentum": null,
+        "adam_lr": null,
+        "grad_delay": 0,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=adamw lr=0.001",
+      "runs": [
+        "adamw-lr1e-3-s42",
+        "adamw-lr1e-3-s43",
+        "adamw-lr1e-3-s44"
+      ],
+      "best_val": {
+        "mean": 4.509265572417016,
+        "std": 0.014672441831206065,
+        "n": 3
+      },
+      "test": {
+        "mean": 4.496835072835286,
+        "std": 0.011541739034712213,
+        "n": 3
+      },
+      "seconds_mean": 600.5255588289996,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.18014969545252146,
+          "43": 0.1873026174657486,
+          "44": 0.1160481677335845
+        },
+        "mean": 0.16116682688395154,
+        "std": 0.0392372415694207,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "adamw",
+        "lr": 0.003,
+        "momentum": null,
+        "adam_lr": null,
+        "grad_delay": 0,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=adamw lr=0.003",
+      "runs": [
+        "adamw-lr3e-3-s42"
+      ],
+      "best_val": {
+        "mean": 4.546499757205739,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 4.533861272475299,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 515.0192530960048,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.21663351619944837
+        },
+        "mean": 0.21663351619944837,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.08,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 0,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.08 momentum=0.95 adam_lr=0.008",
+      "runs": [
+        "muon-lr0.08-s42"
+      ],
+      "best_val": {
+        "mean": 4.558617704054889,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 4.543419417212991,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 645.1412238690027,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.2287514630485985
+        },
+        "mean": 0.2287514630485985,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "adamw",
+        "lr": 0.0003,
+        "momentum": null,
+        "adam_lr": null,
+        "grad_delay": 0,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=adamw lr=0.0003",
+      "runs": [
+        "adamw-lr3e-4-s42"
+      ],
+      "best_val": {
+        "mean": 4.899075283723719,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 4.88702922708848,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 505.8930010980039,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.5692090427174286
+        },
+        "mean": 0.5692090427174286,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "sgd",
+        "lr": 0.2,
+        "momentum": 0.95,
+        "adam_lr": null,
+        "grad_delay": 0,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=sgd lr=0.2 momentum=0.95",
+      "runs": [
+        "sgd-s42",
+        "sgd-s43",
+        "sgd-s44"
+      ],
+      "best_val": {
+        "mean": 4.997971459931018,
+        "std": 0.013413801413283081,
+        "n": 3
+      },
+      "test": {
+        "mean": 4.9842967613070615,
+        "std": 0.011031739420582188,
+        "n": 3
+      },
+      "seconds_mean": 652.4216797263362,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.6617358432096587,
+          "43": 0.6771374870749076,
+          "44": 0.610744812909294
+        },
+        "mean": 0.6498727143979535,
+        "std": 0.034749779346316234,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "adamw",
+        "lr": 0.01,
+        "momentum": null,
+        "adam_lr": null,
+        "grad_delay": 0,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=adamw lr=0.01",
+      "runs": [
+        "adamw-lr1e-2-s42"
+      ],
+      "best_val": {
+        "mean": 5.301342599532184,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 5.288760549881879,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 663.9711760890059,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.9714763585258934
+        },
+        "mean": 0.9714763585258934,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.1,
+        "grad_delay": 0,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.1",
+      "runs": [
+        "muon-lr0.02-adam0.1-s42"
+      ],
+      "best_val": {
+        "mean": 6.778446365805233,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 6.78933396058924,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 1332.175857000002,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 2.4485801247989425
+        },
+        "mean": 2.4485801247989425,
+        "std": 0.0,
+        "n": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+sgd-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --seed 42 --output runs/2.0/sgd-s42 > runs/2.0/sgd-s42.log 2>&1
+sgd-s43|/root/venv/bin/python baselines/backprop.py --tokens 10M --seed 43 --output runs/2.0/sgd-s43 > runs/2.0/sgd-s43.log 2>&1
+sgd-s44|/root/venv/bin/python baselines/backprop.py --tokens 10M --seed 44 --output runs/2.0/sgd-s44 > runs/2.0/sgd-s44.log 2>&1
+adamw-lr3e-4-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --seed 42 --optimizer adamw --lr 3e-4 --output runs/2.0/adamw-lr3e-4-s42 > runs/2.0/adamw-lr3e-4-s42.log 2>&1
+adamw-lr1e-3-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --seed 42 --optimizer adamw --lr 1e-3 --output runs/2.0/adamw-lr1e-3-s42 > runs/2.0/adamw-lr1e-3-s42.log 2>&1
+adamw-lr3e-3-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --seed 42 --optimizer adamw --lr 3e-3 --output runs/2.0/adamw-lr3e-3-s42 > runs/2.0/adamw-lr3e-3-s42.log 2>&1
+adamw-lr1e-2-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --seed 42 --optimizer adamw --lr 1e-2 --output runs/2.0/adamw-lr1e-2-s42 > runs/2.0/adamw-lr1e-2-s42.log 2>&1
+muon-lr0.01-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --seed 42 --optimizer muon --lr 0.01 --output runs/2.0/muon-lr0.01-s42 > runs/2.0/muon-lr0.01-s42.log 2>&1
+muon-lr0.02-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --seed 42 --optimizer muon --lr 0.02 --output runs/2.0/muon-lr0.02-s42 > runs/2.0/muon-lr0.02-s42.log 2>&1
+muon-lr0.04-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --seed 42 --optimizer muon --lr 0.04 --output runs/2.0/muon-lr0.04-s42 > runs/2.0/muon-lr0.04-s42.log 2>&1
+muon-lr0.08-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --seed 42 --optimizer muon --lr 0.08 --output runs/2.0/muon-lr0.08-s42 > runs/2.0/muon-lr0.08-s42.log 2>&1
