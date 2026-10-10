@@ -10,20 +10,35 @@ Box: 4× RTX 3090 24 GB (preferred) or 4× RTX 4070 12 GB, Linux, on-demand.
 
 ## 1. Setup (on the box)
 
+Lessons from the first box (2026-10-10, 4× 3090, host went offline ~10 min into the runs, nothing recovered):
+the vast base image has Python 3.12 + `uv` but **no torch**; a `--single-branch` clone lacks `main`, so the 4 upstream
+bitwise tests skip; background jobs must detach stdin (`< /dev/null`) or the ssh session hangs; pull results home as
+each job finishes; cap CPU threads per job (3 jobs at torch's default 48 threads each may have caused the slow smoke run).
+
 ```bash
 git clone -b exp/value-credit https://github.com/holdoutlabs-ai/dust.git && cd dust
+git fetch -q origin main:main             # upstream-equality tests read main:dust.py
 git log --oneline -1                      # record the commit
-python -c "import torch; print(torch.__version__, torch.cuda.device_count())"
-pip install -q pytest && python -m pytest -q   # CPU tests, ~3 min; must pass on this torch version
-mkdir -p data runs/bp-1m
+uv venv -q -p 3.12 /root/venv
+VIRTUAL_ENV=/root/venv uv pip install torch==2.10.0 pytest numpy     --index-url https://download.pytorch.org/whl/cu128 --extra-index-url https://pypi.org/simple   # ~3 min
+/root/venv/bin/python -c "import torch; print(torch.__version__, torch.cuda.device_count())"   # 2.10.0+cu128 4
+/root/venv/bin/python -m pytest -q        # ~2 min; expect 62 passed, 0 skipped
+mkdir -p data runs/bp-1m runs/logs
+export OMP_NUM_THREADS=8                  # per job; 4 jobs on a 48-core box
 ```
+
+Launch long jobs as `nohup bash script.sh > out 2>&1 < /dev/null &`, each job appending `name exit=$?` to `runs/logs/done`.
 
 From the home box (Git Bash), upload the data and the backprop checkpoint (≈135 MB) so 3.3 uses the same checkpoint as the pop-256 run:
 
 ```bash
 scp -P PORT data/train_1M.pt data/val.pt data/test.pt data/manifest.json root@HOST:dust/data/
 scp -P PORT runs/bp-1m/best.pt root@HOST:dust/runs/bp-1m/
+ssh -p PORT root@HOST 'cd dust && sha256sum data/train_1M.pt runs/bp-1m/best.pt'
+# expect f65a53b4…6a6d (train_1M.pt), b3b6c305…0a79 (best.pt)
 ```
+
+Upload takes ~5 min (best.pt is 125 MB).
 
 ## 2. Gate for 3.4: time one run (report to Noah before step 4)
 
