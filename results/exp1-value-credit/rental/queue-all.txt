@@ -1,0 +1,11 @@
+cosinit|/root/venv/bin/python -m diagnostics.cosine --config paper --variants A,B,C --population 1024 --seeds 0,1,2 --batches 4 --data data/train_1M.pt --device cuda --out results/exp1-value-credit/3.3-cos-init-pop1024.json > results/exp1-value-credit/3.3-cos-init-pop1024.log 2>&1
+cosbp|/root/venv/bin/python -m diagnostics.cosine --config paper --checkpoint runs/bp-1m/best.pt --variants A,B,C --population 1024 --seeds 0,1,2 --batches 4 --data data/train_1M.pt --device cuda --out results/exp1-value-credit/3.3-cos-bp1m-pop1024.json > results/exp1-value-credit/3.3-cos-bp1m-pop1024.log 2>&1
+A-s42|/root/venv/bin/python dust.py --tokens 1M --population 256 --seed 42 --output runs/3.4/A-s42 > runs/3.4/A-s42.log 2>&1
+B-s42|/root/venv/bin/python dust.py --tokens 1M --population 256 --seed 42 --value-credit analytic --output runs/3.4/B-s42 > runs/3.4/B-s42.log 2>&1
+C-s42|/root/venv/bin/python dust.py --tokens 1M --population 256 --seed 42 --value-credit analytic --value-gamma 1.0 --output runs/3.4/C-s42 > runs/3.4/C-s42.log 2>&1
+A-s43|/root/venv/bin/python dust.py --tokens 1M --population 256 --seed 43 --output runs/3.4/A-s43 > runs/3.4/A-s43.log 2>&1
+B-s43|/root/venv/bin/python dust.py --tokens 1M --population 256 --seed 43 --value-credit analytic --output runs/3.4/B-s43 > runs/3.4/B-s43.log 2>&1
+C-s43|/root/venv/bin/python dust.py --tokens 1M --population 256 --seed 43 --value-credit analytic --value-gamma 1.0 --output runs/3.4/C-s43 > runs/3.4/C-s43.log 2>&1
+A-s44|/root/venv/bin/python dust.py --tokens 1M --population 256 --seed 44 --output runs/3.4/A-s44 > runs/3.4/A-s44.log 2>&1
+B-s44|/root/venv/bin/python dust.py --tokens 1M --population 256 --seed 44 --value-credit analytic --output runs/3.4/B-s44 > runs/3.4/B-s44.log 2>&1
+C-s44|/root/venv/bin/python dust.py --tokens 1M --population 256 --seed 44 --value-credit analytic --value-gamma 1.0 --output runs/3.4/C-s44 > runs/3.4/C-s44.log 2>&1

@@ -1,0 +1,5 @@
+1M: 2 steps, population=256, GPUs=1, val=8.3168
+{"step": 1, "train_loss": 8.316601753234863, "elapsed_seconds": 14.874113349011168, "val_loss": 8.162436092601103}
+{"step": 2, "train_loss": 8.159732818603516, "elapsed_seconds": 33.11789699899964, "val_loss": 7.860379219055176}
+Best validation: 7.8604; test: 7.8543
+WALL 45.0s PEAK 7.18 GiB
