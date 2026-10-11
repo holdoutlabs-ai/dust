@@ -1,0 +1,114 @@
+22:40:19 gpu0 start sgd-s42
+22:40:20 gpu1 start sgd-s43
+22:40:21 gpu2 start sgd-s44
+22:40:22 gpu3 start adamw-lr3e-4-s42
+22:47:46 gpu0 end sgd-s42 exit=0
+22:47:46 gpu0 start adamw-lr1e-3-s42
+22:49:14 gpu3 end adamw-lr3e-4-s42 exit=0
+22:49:14 gpu3 start adamw-lr3e-3-s42
+22:49:42 gpu1 end sgd-s43 exit=0
+22:49:42 gpu1 start adamw-lr1e-2-s42
+22:56:07 gpu0 end adamw-lr1e-3-s42 exit=0
+22:56:07 gpu0 start muon-lr0.01-s42
+22:57:39 gpu2 end sgd-s44 exit=0
+22:57:39 gpu2 start muon-lr0.02-s42
+22:58:16 gpu3 end adamw-lr3e-3-s42 exit=0
+22:58:16 gpu3 start muon-lr0.04-s42
+23:01:15 gpu1 end adamw-lr1e-2-s42 exit=0
+23:01:15 gpu1 start muon-lr0.08-s42
+23:05:08 gpu0 end muon-lr0.01-s42 exit=0
+23:07:55 gpu3 end muon-lr0.04-s42 exit=0
+23:12:24 gpu1 end muon-lr0.08-s42 exit=0
+23:16:23 gpu2 end muon-lr0.02-s42 exit=0
+23:17:44 gpu0 start muon-lr0.02-adam0.003-s42
+23:17:45 gpu1 start muon-lr0.02-adam0.03-s42
+23:17:46 gpu2 start muon-lr0.02-adam0.1-s42
+23:17:47 gpu3 start muon-lr0.02-s43
+23:26:29 gpu0 end muon-lr0.02-adam0.003-s42 exit=0
+23:26:29 gpu0 start muon-lr0.02-s44
+23:27:05 gpu3 end muon-lr0.02-s43 exit=0
+23:27:05 gpu3 start adamw-lr1e-3-s43
+23:29:54 gpu1 end muon-lr0.02-adam0.03-s42 exit=0
+23:29:54 gpu1 start adamw-lr1e-3-s44
+23:34:47 gpu0 end muon-lr0.02-s44 exit=0
+23:35:47 gpu3 end adamw-lr1e-3-s43 exit=0
+23:36:11 gpu0 start d1-s42
+23:36:14 gpu3 start d1-pred-s42
+23:40:48 gpu2 end muon-lr0.02-adam0.1-s42 exit=0
+23:40:48 gpu2 start d1-s43
+23:44:09 gpu1 end adamw-lr1e-3-s44 exit=0
+23:44:09 gpu1 start d1-pred-s43
+23:44:27 gpu0 end d1-s42 exit=0
+23:44:27 gpu0 start d1-s44
+23:45:19 gpu3 end d1-pred-s42 exit=0
+23:45:19 gpu3 start d1-pred-s44
+23:52:45 gpu0 end d1-s44 exit=0
+23:52:45 gpu0 start d2-s42
+23:54:24 gpu3 end d1-pred-s44 exit=0
+23:54:24 gpu3 start d2-pred-s42
+23:58:14 gpu1 end d1-pred-s43 exit=0
+23:58:14 gpu1 start d2-s43
+00:01:03 gpu0 end d2-s42 exit=0
+00:01:03 gpu0 start d2-pred-s43
+00:03:29 gpu3 end d2-pred-s42 exit=0
+00:03:29 gpu3 start d2-s44
+00:08:11 gpu2 end d1-s43 exit=0
+00:08:11 gpu2 start d2-pred-s44
+00:09:00 gpu1 end d2-s43 exit=0
+00:09:00 gpu1 start d4-s42
+00:09:24 gpu0 end d2-pred-s43 exit=0
+00:09:24 gpu0 start d4-pred-s42
+00:12:30 gpu3 end d2-s44 exit=0
+00:12:30 gpu3 start d4-s43
+00:17:44 gpu0 end d4-pred-s42 exit=0
+00:17:44 gpu0 start d4-pred-s43
+00:19:37 gpu1 end d4-s42 exit=0
+00:19:37 gpu1 start d4-s44
+00:21:25 gpu3 end d4-s43 exit=0
+00:21:25 gpu3 start d4-pred-s44
+00:26:09 gpu0 end d4-pred-s43 exit=0
+00:26:09 gpu0 start d8-s42
+00:30:15 gpu1 end d4-s44 exit=0
+00:30:15 gpu1 start d8-pred-s42
+00:30:31 gpu2 end d2-pred-s44 exit=0
+00:30:31 gpu2 start d8-s43
+00:30:32 gpu3 end d4-pred-s44 exit=0
+00:30:32 gpu3 start d8-pred-s43
+00:34:15 gpu0 end d8-s42 exit=0
+00:34:15 gpu0 start d8-s44
+00:39:43 gpu3 end d8-pred-s43 exit=0
+00:39:43 gpu3 start d8-pred-s44
+00:41:47 gpu1 end d8-pred-s42 exit=0
+00:41:47 gpu1 start d4-depth-s42
+00:42:35 gpu0 end d8-s44 exit=0
+00:42:35 gpu0 start d4-depth-s43
+00:49:00 gpu3 end d8-pred-s44 exit=0
+00:49:00 gpu3 start d4-depth-s44
+00:50:54 gpu0 end d4-depth-s43 exit=0
+00:50:54 gpu0 start lr0.005-d1-s42
+00:53:56 gpu1 end d4-depth-s42 exit=0
+00:53:56 gpu1 start lr0.005-d1-pred-s42
+00:58:20 gpu3 end d4-depth-s44 exit=0
+00:58:20 gpu3 start lr0.005-d2-s42
+00:59:14 gpu0 end lr0.005-d1-s42 exit=0
+00:59:14 gpu0 start lr0.005-d2-pred-s42
+01:02:29 gpu2 end d8-s43 exit=0
+01:02:29 gpu2 start lr0.01-d1-s42
+01:06:02 gpu1 end lr0.005-d1-pred-s42 exit=0
+01:06:02 gpu1 start lr0.01-d1-pred-s42
+01:07:33 gpu0 end lr0.005-d2-pred-s42 exit=0
+01:07:33 gpu0 start lr0.01-d2-s42
+01:07:37 gpu3 end lr0.005-d2-s42 exit=0
+01:07:37 gpu3 start lr0.01-d2-pred-s42
+01:16:13 gpu0 end lr0.01-d2-s42 exit=0
+01:17:06 gpu3 end lr0.01-d2-pred-s42 exit=0
+01:18:23 gpu1 end lr0.01-d1-pred-s42 exit=0
+01:29:17 gpu2 end lr0.01-d1-s42 exit=0
+01:30:58 gpu0 start lr0.01-d1-s43
+01:30:58 gpu1 start lr0.01-d2-pred-s43
+01:30:58 gpu2 start lr0.01-d1-s44
+01:30:58 gpu3 start lr0.01-d2-pred-s44
+01:39:21 gpu0 end lr0.01-d1-s43 exit=0
+01:40:15 gpu3 end lr0.01-d2-pred-s44 exit=0
+01:41:50 gpu1 end lr0.01-d2-pred-s43 exit=0
+01:53:20 gpu2 end lr0.01-d1-s44 exit=0

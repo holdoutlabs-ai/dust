@@ -1,0 +1,666 @@
+{
+  "runs_dir": "C:\\Users\\noahp\\AppData\\Local\\Temp\\sall",
+  "reference": "d0-s",
+  "rows": [
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 0,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.008",
+      "runs": [
+        "d0-s42",
+        "d0-s43",
+        "d0-s44"
+      ],
+      "best_val": {
+        "mean": 4.348098745533065,
+        "std": 0.026249279929601535,
+        "n": 3
+      },
+      "test": {
+        "mean": 4.334272160249598,
+        "std": 0.025191766834802266,
+        "n": 3
+      },
+      "seconds_mean": 699.6473047740001,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.0,
+          "43": 0.0,
+          "44": 0.0
+        },
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.01,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 1,
+        "delay_mode": "uniform",
+        "weight_prediction": true
+      },
+      "label": "optimizer=muon lr=0.01 momentum=0.95 adam_lr=0.008 grad_delay=1 weight_prediction=True",
+      "runs": [
+        "lr0.01-d1-pred-s42"
+      ],
+      "best_val": {
+        "mean": 4.47416670182172,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 4.461155498729033,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 717.115174999999,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.1443004608154297
+        },
+        "mean": 0.1443004608154297,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 1,
+        "delay_mode": "uniform",
+        "weight_prediction": true
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.008 grad_delay=1 weight_prediction=True",
+      "runs": [
+        "d1-pred-s42",
+        "d1-pred-s43",
+        "d1-pred-s44"
+      ],
+      "best_val": {
+        "mean": 4.481872063057096,
+        "std": 0.015549943769734224,
+        "n": 3
+      },
+      "test": {
+        "mean": 4.46616158765905,
+        "std": 0.014505703351751043,
+        "n": 3
+      },
+      "seconds_mean": 623.2512421863285,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.1370095926172592,
+          "43": 0.1445724262910728,
+          "44": 0.11973793366376029
+        },
+        "mean": 0.13377331752403077,
+        "std": 0.012729615601945648,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.005,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 1,
+        "delay_mode": "uniform",
+        "weight_prediction": true
+      },
+      "label": "optimizer=muon lr=0.005 momentum=0.95 adam_lr=0.008 grad_delay=1 weight_prediction=True",
+      "runs": [
+        "lr0.005-d1-pred-s42"
+      ],
+      "best_val": {
+        "mean": 4.576267186333151,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 4.563044632182402,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 699.7411993439964,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.24640094532686074
+        },
+        "mean": 0.24640094532686074,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.01,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 2,
+        "delay_mode": "uniform",
+        "weight_prediction": true
+      },
+      "label": "optimizer=muon lr=0.01 momentum=0.95 adam_lr=0.008 grad_delay=2 weight_prediction=True",
+      "runs": [
+        "lr0.01-d2-pred-s42",
+        "lr0.01-d2-pred-s43",
+        "lr0.01-d2-pred-s44"
+      ],
+      "best_val": {
+        "mean": 4.683483563217463,
+        "std": 0.018915857835439174,
+        "n": 3
+      },
+      "test": {
+        "mean": 4.6684495608011884,
+        "std": 0.01725636414360967,
+        "n": 3
+      },
+      "seconds_mean": 569.8241776113306,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.33566668454338533,
+          "43": 0.3454362083883842,
+          "44": 0.3250515601214241
+        },
+        "mean": 0.3353848176843979,
+        "std": 0.010195246830585621,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.01,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 1,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.01 momentum=0.95 adam_lr=0.008 grad_delay=1",
+      "runs": [
+        "lr0.01-d1-s42",
+        "lr0.01-d1-s43",
+        "lr0.01-d1-s44"
+      ],
+      "best_val": {
+        "mean": 4.703957136939554,
+        "std": 0.027157027310903404,
+        "n": 3
+      },
+      "test": {
+        "mean": 4.68886858809228,
+        "std": 0.028348349662265685,
+        "n": 3
+      },
+      "seconds_mean": 1117.4283407143328,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.3848959698396568,
+          "43": 0.33681482427260434,
+          "44": 0.3458643801072059
+        },
+        "mean": 0.355858391406489,
+        "std": 0.025551112229170593,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 2,
+        "delay_mode": "uniform",
+        "weight_prediction": true
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.008 grad_delay=2 weight_prediction=True",
+      "runs": [
+        "d2-pred-s42",
+        "d2-pred-s43",
+        "d2-pred-s44"
+      ],
+      "best_val": {
+        "mean": 4.730745867186902,
+        "std": 0.01096666656318661,
+        "n": 3
+      },
+      "test": {
+        "mean": 4.715364512275247,
+        "std": 0.011228226784404651,
+        "n": 3
+      },
+      "seconds_mean": 763.0129497430025,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.40712771696202843,
+          "43": 0.40091480928308787,
+          "44": 0.3398988387163948
+        },
+        "mean": 0.382647121653837,
+        "std": 0.03715120221515678,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 1,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.008 grad_delay=1",
+      "runs": [
+        "d1-s42",
+        "d1-s43",
+        "d1-s44"
+      ],
+      "best_val": {
+        "mean": 4.745131399117264,
+        "std": 0.020295033029985515,
+        "n": 3
+      },
+      "test": {
+        "mean": 4.7305585636812095,
+        "std": 0.01984831910873818,
+        "n": 3
+      },
+      "seconds_mean": 848.5438048469999,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.39480018615722656,
+          "43": 0.40922983954934455,
+          "44": 0.3870679350460273
+        },
+        "mean": 0.3970326535841995,
+        "std": 0.011248352586619494,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 4,
+        "delay_mode": "depth",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.008 grad_delay=4 delay_mode=depth",
+      "runs": [
+        "d4-depth-s42",
+        "d4-depth-s43",
+        "d4-depth-s44"
+      ],
+      "best_val": {
+        "mean": 4.75292735006295,
+        "std": 0.0166807899980488,
+        "n": 3
+      },
+      "test": {
+        "mean": 4.7398367395587995,
+        "std": 0.015457778091903282,
+        "n": 3
+      },
+      "seconds_mean": 574.340238877332,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.4038627568413231,
+          "43": 0.4276283769046554,
+          "44": 0.3829946798436774
+        },
+        "mean": 0.4048286045298853,
+        "std": 0.022332518323084707,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.005,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 2,
+        "delay_mode": "uniform",
+        "weight_prediction": true
+      },
+      "label": "optimizer=muon lr=0.005 momentum=0.95 adam_lr=0.008 grad_delay=2 weight_prediction=True",
+      "runs": [
+        "lr0.005-d2-pred-s42"
+      ],
+      "best_val": {
+        "mean": 4.772695962120505,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 4.758854837978587,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 479.8385952630051,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.44282972111421426
+        },
+        "mean": 0.44282972111421426,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.005,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 1,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.005 momentum=0.95 adam_lr=0.008 grad_delay=1",
+      "runs": [
+        "lr0.005-d1-s42"
+      ],
+      "best_val": {
+        "mean": 4.797271896811092,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 4.783549477072323,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 480.9780433650012,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.46740565580480187
+        },
+        "mean": 0.46740565580480187,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 4,
+        "delay_mode": "uniform",
+        "weight_prediction": true
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.008 grad_delay=4 weight_prediction=True",
+      "runs": [
+        "d4-pred-s42",
+        "d4-pred-s43",
+        "d4-pred-s44"
+      ],
+      "best_val": {
+        "mean": 4.994704153023514,
+        "std": 0.005445418554650521,
+        "n": 3
+      },
+      "test": {
+        "mean": 4.978212908202527,
+        "std": 0.00648724152848326,
+        "n": 3
+      },
+      "seconds_mean": 497.07737799099897,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.6706407490898583,
+          "43": 0.6534598013933968,
+          "44": 0.6157156719880943
+        },
+        "mean": 0.6466054074904498,
+        "std": 0.02809676245568601,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 2,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.008 grad_delay=2",
+      "runs": [
+        "d2-s42",
+        "d2-s43",
+        "d2-s44"
+      ],
+      "best_val": {
+        "mean": 4.998791778788847,
+        "std": 0.003004649722943492,
+        "n": 3
+      },
+      "test": {
+        "mean": 4.9839902485118195,
+        "std": 0.00475653501542458,
+        "n": 3
+      },
+      "seconds_mean": 540.883407449665,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.6669029067544372,
+          "43": 0.6659985149607941,
+          "44": 0.6191776780521163
+        },
+        "mean": 0.6506930332557825,
+        "std": 0.027296843981292795,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.01,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 2,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.01 momentum=0.95 adam_lr=0.008 grad_delay=2",
+      "runs": [
+        "lr0.01-d2-s42"
+      ],
+      "best_val": {
+        "mean": 5.00467580907485,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 4.992692694944494,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 499.80905569400056,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.67480956806856
+        },
+        "mean": 0.67480956806856,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.005,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 2,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.005 momentum=0.95 adam_lr=0.008 grad_delay=2",
+      "runs": [
+        "lr0.005-d2-s42"
+      ],
+      "best_val": {
+        "mean": 5.0320899346295525,
+        "std": 0.0,
+        "n": 1
+      },
+      "test": {
+        "mean": 5.019568246953628,
+        "std": 0.0,
+        "n": 1
+      },
+      "seconds_mean": 535.8778071279958,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.702223693623262
+        },
+        "mean": 0.702223693623262,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 4,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.008 grad_delay=4",
+      "runs": [
+        "d4-s42",
+        "d4-s43",
+        "d4-s44"
+      ],
+      "best_val": {
+        "mean": 5.215876354890711,
+        "std": 0.0054400797618681706,
+        "n": 3
+      },
+      "test": {
+        "mean": 5.203397816302729,
+        "std": 0.0044974789247674155,
+        "n": 3
+      },
+      "seconds_mean": 580.9130837183329,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.8803199319278487,
+          "43": 0.8847801545087028,
+          "44": 0.8382327416363884
+        },
+        "mean": 0.8677776093576467,
+        "std": 0.02568360961523276,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 8,
+        "delay_mode": "uniform",
+        "weight_prediction": true
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.008 grad_delay=8 weight_prediction=True",
+      "runs": [
+        "d8-pred-s42",
+        "d8-pred-s43",
+        "d8-pred-s44"
+      ],
+      "best_val": {
+        "mean": 5.216655076718798,
+        "std": 0.007647399136460006,
+        "n": 3
+      },
+      "test": {
+        "mean": 5.205613379384957,
+        "std": 0.007928175870746021,
+        "n": 3
+      },
+      "seconds_mean": 577.8473203570005,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 0.8953971021315628,
+          "43": 0.8744004193474266,
+          "44": 0.8358714720782112
+        },
+        "mean": 0.8685563311857335,
+        "std": 0.03019006762402741,
+        "n": 3
+      }
+    },
+    {
+      "config": {
+        "optimizer": "muon",
+        "lr": 0.02,
+        "momentum": 0.95,
+        "adam_lr": 0.008,
+        "grad_delay": 8,
+        "delay_mode": "uniform",
+        "weight_prediction": false
+      },
+      "label": "optimizer=muon lr=0.02 momentum=0.95 adam_lr=0.008 grad_delay=8",
+      "runs": [
+        "d8-s42",
+        "d8-s43",
+        "d8-s44"
+      ],
+      "best_val": {
+        "mean": 5.4320757155324895,
+        "std": 0.008966029504652149,
+        "n": 3
+      },
+      "test": {
+        "mean": 5.419412809259751,
+        "std": 0.006399919550112235,
+        "n": 3
+      },
+      "seconds_mean": 935.4261662206651,
+      "paired_vs_reference": {
+        "per_seed": {
+          "42": 1.1085093442131493,
+          "43": 1.099794976851519,
+          "44": 1.0436265889336074
+        },
+        "mean": 1.0839769699994253,
+        "std": 0.03521505343948656,
+        "n": 3
+      }
+    }
+  ]
+}

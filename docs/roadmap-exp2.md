@@ -18,7 +18,7 @@ Status values: `todo | in-progress | review | done`. Interpreter: `D:/Micromamba
 | Stage | What | Where | Gate | Status | Result |
 |---|---|---|---|---|---|
 | 2.0 | Strong baseline: lr sweep, then 3 seeds, SGD/AdamW/Muon at 10M | rented 4×3090 | Noah: approved | done | reference Muon lr 0.02 / adam_lr 0.008: val 4.348 ± 0.026; AdamW 4.509; SGD 4.998 |
-| 2.1 | Staleness ladder d ∈ {0,1,2,4,8} × {plain, weight prediction} | rental | Noah | running | |
+| 2.1 | Staleness ladder d ∈ {0,1,2,4,8} × {plain, weight prediction} + depth mode + 2.1b lr retune | rented 4×3090 | Noah: approved | done | d=1 +0.40, d=2 +0.65 (= SGD); prediction ≈ halves d; depth d=4 ≈ uniform d=1; retune recovers ≤ 0.05 |
 | 2.2 | Synthetic gradients: cosine phase, then training | rental | Noah | todo | |
 | 2.3 | Data-conditioned predictor vs stale cache | rental | Noah | todo | |
 

@@ -1,0 +1,27 @@
+d1-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 42 --grad-delay 1 --output runs/2.1/d1-s42 > runs/2.1/d1-s42.log 2>&1
+d1-pred-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 42 --grad-delay 1 --weight-prediction --output runs/2.1/d1-pred-s42 > runs/2.1/d1-pred-s42.log 2>&1
+d1-s43|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 43 --grad-delay 1 --output runs/2.1/d1-s43 > runs/2.1/d1-s43.log 2>&1
+d1-pred-s43|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 43 --grad-delay 1 --weight-prediction --output runs/2.1/d1-pred-s43 > runs/2.1/d1-pred-s43.log 2>&1
+d1-s44|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 44 --grad-delay 1 --output runs/2.1/d1-s44 > runs/2.1/d1-s44.log 2>&1
+d1-pred-s44|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 44 --grad-delay 1 --weight-prediction --output runs/2.1/d1-pred-s44 > runs/2.1/d1-pred-s44.log 2>&1
+d2-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 42 --grad-delay 2 --output runs/2.1/d2-s42 > runs/2.1/d2-s42.log 2>&1
+d2-pred-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 42 --grad-delay 2 --weight-prediction --output runs/2.1/d2-pred-s42 > runs/2.1/d2-pred-s42.log 2>&1
+d2-s43|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 43 --grad-delay 2 --output runs/2.1/d2-s43 > runs/2.1/d2-s43.log 2>&1
+d2-pred-s43|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 43 --grad-delay 2 --weight-prediction --output runs/2.1/d2-pred-s43 > runs/2.1/d2-pred-s43.log 2>&1
+d2-s44|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 44 --grad-delay 2 --output runs/2.1/d2-s44 > runs/2.1/d2-s44.log 2>&1
+d2-pred-s44|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 44 --grad-delay 2 --weight-prediction --output runs/2.1/d2-pred-s44 > runs/2.1/d2-pred-s44.log 2>&1
+d4-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 42 --grad-delay 4 --output runs/2.1/d4-s42 > runs/2.1/d4-s42.log 2>&1
+d4-pred-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 42 --grad-delay 4 --weight-prediction --output runs/2.1/d4-pred-s42 > runs/2.1/d4-pred-s42.log 2>&1
+d4-s43|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 43 --grad-delay 4 --output runs/2.1/d4-s43 > runs/2.1/d4-s43.log 2>&1
+d4-pred-s43|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 43 --grad-delay 4 --weight-prediction --output runs/2.1/d4-pred-s43 > runs/2.1/d4-pred-s43.log 2>&1
+d4-s44|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 44 --grad-delay 4 --output runs/2.1/d4-s44 > runs/2.1/d4-s44.log 2>&1
+d4-pred-s44|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 44 --grad-delay 4 --weight-prediction --output runs/2.1/d4-pred-s44 > runs/2.1/d4-pred-s44.log 2>&1
+d8-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 42 --grad-delay 8 --output runs/2.1/d8-s42 > runs/2.1/d8-s42.log 2>&1
+d8-pred-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 42 --grad-delay 8 --weight-prediction --output runs/2.1/d8-pred-s42 > runs/2.1/d8-pred-s42.log 2>&1
+d8-s43|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 43 --grad-delay 8 --output runs/2.1/d8-s43 > runs/2.1/d8-s43.log 2>&1
+d8-pred-s43|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 43 --grad-delay 8 --weight-prediction --output runs/2.1/d8-pred-s43 > runs/2.1/d8-pred-s43.log 2>&1
+d8-s44|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 44 --grad-delay 8 --output runs/2.1/d8-s44 > runs/2.1/d8-s44.log 2>&1
+d8-pred-s44|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 44 --grad-delay 8 --weight-prediction --output runs/2.1/d8-pred-s44 > runs/2.1/d8-pred-s44.log 2>&1
+d4-depth-s42|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 42 --grad-delay 4 --delay-mode depth --output runs/2.1/d4-depth-s42 > runs/2.1/d4-depth-s42.log 2>&1
+d4-depth-s43|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 43 --grad-delay 4 --delay-mode depth --output runs/2.1/d4-depth-s43 > runs/2.1/d4-depth-s43.log 2>&1
+d4-depth-s44|/root/venv/bin/python baselines/backprop.py --tokens 10M --optimizer muon --lr 0.02 --seed 44 --grad-delay 4 --delay-mode depth --output runs/2.1/d4-depth-s44 > runs/2.1/d4-depth-s44.log 2>&1
