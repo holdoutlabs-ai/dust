@@ -44,6 +44,11 @@ weights). One more pipeline-realistic variant: per-block delay proportional to d
 - Test gate: d = 0 is bitwise the baseline; a d = 2 run on CPU applies exactly the gradients of steps t−2.
 - Readout: loss at 10M vs d, paired differences against d = 0, for the reference optimizer.
 
+**Amendment (2026-10-10, approved by Noah): 2.1b lr retune.** At the reference lr (0.02, tuned for d = 0), a 1-step delay cost
++0.40 and a 2-step delay +0.65 val (the latter erases Muon's whole lead over SGD). To separate staleness from an lr that is too aggressive
+for stale gradients, re-run d ∈ {1, 2} × {plain, weight prediction} at lr ∈ {0.005, 0.01} (seed 42), then 3 seeds of the best lr per cell.
+The ladder's fixed-lr results stay as run.
+
 ### 2.2 Synthetic gradients (H2)
 
 A small per-block predictor (linear, then a 2-layer MLP) maps a block's output h (+ optional token embedding) to ∂L/∂h,
